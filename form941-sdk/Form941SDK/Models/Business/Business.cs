@@ -24,18 +24,6 @@ namespace Form941SDK.Models.Business
         //[RegularExpression(@"[0-9a-zA-Z\s-\(\)\&\,\.'s]+$", ErrorMessage = "ERR-BNAME1-03:Enter valid Business name")]
 
         public string BusinessNm { get; set; }
-        [DataMember]
-
-        public string FirstNm { get; set; }
-        [DataMember]
-
-        public string LastNm { get; set; }
-        [DataMember]
-
-        public string MiddleNm { get; set; }
-        [DataMember]
-
-        public string Suffix { get; set; }
 
         /// <summary>
         /// Trade Name (DBA) of the business. This is optional.

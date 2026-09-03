@@ -14,9 +14,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 
 
-
-
-
 </head>
 <div class="container">
     <div class="w-75 m-auto mt-4">
@@ -41,15 +38,7 @@
                     <div id="page1" class="form-page">
                         <!-- Your form fields for Page 1 -->
                         <div class="fs-20 text-dark">
-                            @if (!string.IsNullOrWhiteSpace(@Model.Form941Records[0].ReturnHeader.Business.BusinessNm))
-                            {
-                                <span class=" position-relative pb-0  mb-3"></span> <span class="head-1 me-3">@Model.Form941Records[0].ReturnHeader.Business.BusinessNm</span> <span class="text-muted fs-14"></span>
-                            }
-                            else
-                            {
-                                <span class=" position-relative pb-0  mb-3"></span> <span class="head-1 me-3">@Model.Form941Records[0].ReturnHeader.Business.FirstNm @Model.Form941Records[0].ReturnHeader.Business.LastNm @Model.Form941Records[0].ReturnHeader.Business.MiddleNm @Model.Form941Records[0].ReturnHeader.Business.Suffix</span> <span class="text-muted fs-14"></span>
-                            }
-
+                            <span class=" position-relative pb-0  mb-3"></span> <span class="head-1 me-3">@Model.Form941Records[0].ReturnHeader.Business.BusinessNm</span> <span class="text-muted fs-14">
                                 @if (Model.Form941Records[0].ReturnHeader.Business.EINorSSN.Length > 10)
                                 {
                                     <span>(SSN : @Model.Form941Records[0].ReturnHeader.Business.EINorSSN)</span>
@@ -71,7 +60,7 @@
                                     <label class="control-label"><span class="text-danger">*</span>Quater:</label>
                                     @Html.DropDownListFor(model => model.Form941Records[0].ReturnHeader.Qtr, Enum.GetValues(typeof(QuaterType)).Cast
                                 <QuaterType>
-                                ().Select(x => new SelectListItem { Text = Utility.GetEnumDisplayName(x), Value = (x).ToString() }), "Select", new {@class = "form-control form-select" })
+                                ().Select(x => new SelectListItem { Text = Utility.GetEnumDisplayName(x), Value = (x).ToString() }), "State", new {@class = "form-control form-select" })
                                 </div>
                             </div>
                         </div>
@@ -89,7 +78,7 @@
                         <div class="row d-flex justify-content-center mb-2">
                             <div class="col-md-9">
                                 <div class="labelName">
-                                    <label class="control-label">1. Number of employees who received wages, tips, or other compensation for the pay period including: Mar. 12 (Quarter 1), June 12 (Quarter 2), Sept. 12 (Quarter 3), or Dec. 12 (Quarter 4)</label>
+                                    <label class="control-label">1. Employee Count :</label>
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -102,7 +91,7 @@
                         <div class="row d-flex justify-content-center mb-2">
                             <div class="col-md-9">
                                 <div class="labelName">
-                                    <label class="control-label">2. Wages, tips, and other compensation</label>
+                                    <label class="control-label">2. Wages Amount :</label>
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -115,7 +104,7 @@
                         <div class="row d-flex justify-content-center mb-2">
                             <div class="col-md-9">
                                 <div class="labelName">
-                                    <label class="control-label">3. Federal income tax withheld from wages, tips, and other compensation</label>
+                                    <label class="control-label">3. Federal Income Tax WithHeld Amount :</label>
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -161,8 +150,50 @@
                                 </div>
                             </div>
                         </div>
-
-
+                        <div class="row d-flex justify-content-center mb-2">
+                            <div class="col-md-7">
+                                <div class="labelName">
+                                    <label class="control-label">5a. (i) Qualified sick leave wages :</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="labelName">
+                                    @Html.TextBoxFor(model => model.Form941Records[0].ReturnData.Form941.QualSickLeaveWagesAmt_Col1, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="calculation">
+                                    <span style="font-size:13px">x 0.062 =</span>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="labelName">
+                                    @Html.TextBoxFor(model => model.Form941Records[0].ReturnData.Form941.TaxOnQualSickLeaveWagesAmt_Col2, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center mb-2">
+                            <div class="col-md-7">
+                                <div class="labelName">
+                                    <label class="control-label">5a. (ii) Qualified family leave wages :</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="labelName">
+                                    @Html.TextBoxFor(model => model.Form941Records[0].ReturnData.Form941.QualFamilyLeaveWagesAmt_Col1, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="calculation">
+                                    <span style="font-size:13px">x 0.062 =</span>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="labelName">
+                                    @Html.TextBoxFor(model => model.Form941Records[0].ReturnData.Form941.TaxOnQualFamilyLeaveWagesAmt_Col2, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
                         <div class="row d-flex justify-content-center mb-2">
                             <div class="col-md-7">
                                 <div class="labelName">
@@ -232,7 +263,7 @@
                         <div class="row d-flex justify-content-center mb-2">
                             <div class="col-md-9">
                                 <div class="labelName">
-                                    <label class="control-label">5e Total social security and Medicare taxes. Add Column 2 from lines 5a, 5b, 5c, and 5d</label>
+                                    <label class="control-label">5e.Total social security and Medicare taxes :</label><span>Add Column 2 from lines 5a, 5a(i), 5a(ii), 5b, 5c, and 5d</span>
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -328,86 +359,29 @@
                         <div class="row d-flex justify-content-center mb-15px">
                             <div class="col-md-6 mt-2">
                                 <div class="labelName">
-                                    @Html.CheckBoxFor(model => model.Form941Records[0].ReturnData.Form941.IsPayrollTaxCredit, new { @class = " form-check-input me-2",id="IsPayrroll" ,onchange="IsPayrrollcheckbox()"})
+                                    @Html.CheckBoxFor(model => model.Form941Records[0].ReturnData.Form941.IsPayrollTaxCredit, new { @class = " form-check-input me-2",id="checkboxIsTicked" })
                                     <span class='mt-1 pe-2'>Is Payroll Tax Credit</span>
                                 </div>
                             </div>
                             <div class="col-md-6 mt-2">
                             </div>
                         </div>
-                        <button class="btn btn-primary" id="8974Popup" type="button" style="display:none" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Form8974</button>
+
                         <div class="row d-flex justify-content-center mb-2">
                             <div class="col-md-9">
                                 <div class="labelName">
-                                    <label class="control-label">11. Qualified small business payroll tax credit for increasing research activities :</label> <span> Attach Form 8974</span>
+                                    <label class="control-label">11a. Qualified small business payroll tax credit for increasing research activities :</label> <span> Attach Form 8974</span>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="labelName d-flex">
-                                    <span class='mt-1 pe-2'>11</span>
+                                    <span class='mt-1 pe-2'>11a</span>
                                     @Html.TextBoxFor(model => model.Form941Records[0].ReturnData.Form941.Line11, new { @class = "form-control" })
                                 </div>
                             </div>
                         </div>
-                        <div class="row d-flex justify-content-center mb-2">
-                            <div class="col-md-9">
-                                <div class="labelName">
-                                    <label class="control-label">12. Total taxes after adjustments and nonrefundable credits :</label><span>Subtract line 11 from line 10</span>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="labelName d-flex">
-                                    <span class='mt-1 pe-2'>12</span>
-                                    @Html.TextBoxFor(model => model.Form941Records[0].ReturnData.Form941.Line12, new { @class = "form-control" })
 
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row d-flex justify-content-center mb-2">
-                            <div class="col-md-9">
-                                <div class="labelName">
-                                    <label class="control-label">13. Total deposits for this quarter, including overpayment applied from a prior quarter and overpayments applied from Form 941-X, 941-X (PR), or 944-X filed in the current quarter</label>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="labelName d-flex">
-                                    <span class='mt-1 pe-2'>13</span>
-                                    @Html.TextBoxFor(model => model.Form941Records[0].ReturnData.Form941.TotTaxDepositAmt, new { @class = "form-control" })
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row d-flex justify-content-center mb-2">
-                            <div class="col-md-9">
-                                <div class="labelName">
-                                    <label class="control-label">14. Balance due : </label><span>If line 12 is more than line 13, enter the difference</span>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="labelName d-flex">
-                                    <span class='mt-1 pe-2'>14</span>
-                                    @Html.TextBoxFor(model => model.Form941Records[0].ReturnData.Form941.Line14, new { @class = "form-control" })
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row d-flex justify-content-center mb-2">
-                            <div class="col-md-9">
-                                <div class="labelName">
-                                    <label class="control-label">15. Overpayment :</label><span>If line 13 is more than line 12, enter the difference</span>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="labelName d-flex">
-                                    <span class='mt-1 pe-2'>15</span>
-                                    @Html.TextBoxFor(model => model.Form941Records[0].ReturnData.Form941.Line15, new { @class = "form-control" })
-
-                                </div>
-                            </div>
-                        </div>
-
+                        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Form8974</button>
 
                         <div class="offcanvas offcanvas-end w-75 modal-xl modal-md modal-dialog-scrollable m-0 h-100 ms-auto" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
                             <div class="offcanvas-header rounded-0 border-0 bg-secondary">
@@ -433,7 +407,8 @@
                                     <div class="col-md-9">
                                         <div class="labelName">
                                             <label class="control-label">
-                                                8. Enter the amount from Form 941, line 5a, Column 2; Form 943, line 3; or Form 944, line 4a, Column 2
+                                                8. Enter the amount from Form 941 (941-PR or 941-SS), line 5a, Column 2; Form 943 (943-PR), line 3; or
+                                                Form 944 (944(SP)), line 4a, Column 2
                                             </label>
                                         </div>
                                     </div>
@@ -448,7 +423,8 @@
                                     <div class="col-md-9">
                                         <div class="labelName">
                                             <label class="control-label">
-                                                9. Enter the amount from Form 941, line 5b, Column 2; or Form 944, line 4b, Column 2
+                                                9. Enter the amount from Form 941 (941-PR or 941-SS), line 5b, Column 2; or
+                                                Form 944 (944(SP)), line 4b, Column 2
                                             </label>
                                         </div>
                                     </div>
@@ -478,7 +454,7 @@
                                     <div class="col-md-9">
                                         <div class="labelName">
                                             <label class="control-label">
-                                                11. Multiply line 10 by 50% (0.50). Check this box   @Html.RadioButtonFor(model => model.Form941Records[0].ReturnData.Form941.Form8974.PayerIndicatorType,"THIRDPARTYSICKPAYIND",new { @class = " form-check-input  me-2" })if you're a third-party payer of sick pay or check this box  @Html.RadioButtonFor(model => model.Form941Records[0].ReturnData.Form941.Form8974.PayerIndicatorType,"SECTION3121QIND",new { @class = " form-check-input  me-2" }) if you received a Section 3121(q) Notice and Demand. See the instructions before completing line 11 Clear
+                                                11. Multiply line 10 by 50% (0.50).
                                             </label>
                                         </div>
                                     </div>
@@ -493,7 +469,7 @@
                                     <div class="col-md-9">
                                         <div class="labelName">
                                             <label class="control-label">
-                                                12. Credit against the employer share of social security tax. Enter the smaller of line 7 or 11, but not more than $250,000. See the instructions before entering an amount if you file Form 943 or Form 944. If you entered the amount from line 7, stop here and also enter this amount on Form 941, line 11; Form 943, line 12a; or Form 944, line 8a
+                                                12. Credit against the employer share of social security tax. Enter the smaller of line 7 or 11, but not more than $250,000. See the instructions before entering an amount if you file Form 943 or Form 944. If you entered the amount from line 7, stop here and also enter this amount on Form 941 (941-PR or 941-SS), line 11a; Form 943 (943-PR), line 12a; or Form 944 (944(SP)), line 8a.
                                             </label>
                                         </div>
                                     </div>
@@ -523,7 +499,7 @@
                                     <div class="col-md-9">
                                         <div class="labelName">
                                             <label class="control-label">
-                                                14. Enter the amount from Form 941, line 5c, column 2; Form 943, line 5; or Form 944, line 4c, column 2
+                                                14. Enter the amount from Form 941 (941-PR or 941-SS), line 5c, column 2; Form 943 (943-PR), line 5; or Form 944 (944(SP)), line 4c, column 2
                                             </label>
                                         </div>
                                     </div>
@@ -568,7 +544,7 @@
                                     <div class="col-md-9">
                                         <div class="labelName">
                                             <label class="control-label">
-                                                17. Total credit. Add lines 12 and 16. Also, enter this amount on Form 941, line 11; Form 943, line 12a; or Form 944, line 8a
+                                                17. Total credit. Add lines 12 and 16. Also, enter this amount on Form 941 (941-PR or 941-SS), line 11a; Form 943 (943-PR), line 12a; or Form 944 (944(SP)), line 8a
                                             </label>
                                         </div>
                                     </div>
@@ -613,6 +589,32 @@
                         </div>
 
 
+                        <div class="row d-flex justify-content-center mb-2">
+                            <div class="col-md-9">
+                                <div class="labelName">
+                                    <label class="control-label">11b. Nonrefundable portion of credit for qualified sick and family leave wages for leave taken before April 1,2021 :</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="labelName d-flex">
+                                    <span class='mt-1 pe-2'>11b</span>
+                                    @Html.TextBoxFor(model => model.Form941Records[0].ReturnData.Form941.Line11b, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center mb-2">
+                            <div class="col-md-9">
+                                <div class="labelName">
+                                    <label class="control-label">11c. Reserved for future use :</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="labelName d-flex">
+                                    <span class='mt-1 pe-2'>11c</span>
+                                    <input type="text" class='form-control' disabled />
+                                </div>
+                            </div>
+                        </div>
 
                         <div class='d-flex align-items-center justify-content-between mt-5 px-5'>
                             @if (Model != null && Model.SubmissionId != Guid.Empty)
@@ -646,6 +648,227 @@
                     <div id="page2" class="form-page" style="display: none;">
                         <!-- Your form fields for Page 2 -->
 
+                        <h2>
+                            Form941 Details
+                        </h2>
+
+                        <div class="row d-flex justify-content-center mb-2">
+                            <div class="col-md-9">
+                                <div class="labelName">
+                                    <label class="control-label">11d. Nonrefundable portion of credit for qualified sick and family leave wages for leave taken after March 31,2021, and before October 1, 2021 :</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="labelName d-flex">
+                                    <span class='mt-1 pe-2'>11d</span>
+                                    @Html.TextBoxFor(model => model.Form941Records[0].ReturnData.Form941.Line11d, new { @class = "form-control" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center mb-2">
+                            <div class="col-md-9">
+                                <div class="labelName">
+                                    <label class="control-label">11e. Reserved for future use :</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="labelName d-flex">
+                                    <span class='mt-1 pe-2'>11e</span>
+                                    <input type="text" class='form-control' disabled />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center mb-2">
+                            <div class="col-md-9">
+                                <div class="labelName">
+                                    <label class="control-label">11f. Reserved for future use :</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="labelName d-flex">
+                                    <span class='mt-1 pe-2'>11f</span>
+                                    <input type="text" class='form-control' disabled />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center mb-2">
+                            <div class="col-md-9">
+                                <div class="labelName">
+                                    <label class="control-label">11g. Total nonrefundable credits : </label><span>Add lines 11a, 11b, and 11d</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="labelName d-flex">
+                                    <span class='mt-1 pe-2'>11g</span>
+                                    @Html.TextBoxFor(model => model.Form941Records[0].ReturnData.Form941.TotlNonRfdCrAmt, new { @class = "form-control" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center mb-2">
+                            <div class="col-md-9">
+                                <div class="labelName">
+                                    <label class="control-label">12. Total taxes after adjustments and nonrefundable credits :</label><span>Subtract line 11g from line 10</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="labelName d-flex">
+                                    <span class='mt-1 pe-2'>12</span>
+                                    @Html.TextBoxFor(model => model.Form941Records[0].ReturnData.Form941.Line12, new { @class = "form-control" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center mb-2">
+                            <div class="col-md-9">
+                                <div class="labelName">
+                                    <label class="control-label">13a. Total deposits for this quarter, Including overpayment applied from a prior quarter and overpayments applied from Form 941-X, 941-X (PR), 944-X(SP) filed in the current quarter :</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="labelName d-flex">
+                                    <span class='mt-1 pe-2'>13a</span>
+                                    @Html.TextBoxFor(model => model.Form941Records[0].ReturnData.Form941.TotTaxDepositAmt, new { @class = "form-control" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center mb-2">
+                            <div class="col-md-9">
+                                <div class="labelName">
+                                    <label class="control-label">13b. Reserved for future use :</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="labelName d-flex">
+                                    <span class='mt-1 pe-2'>13b</span>
+                                    <input type="text" class='form-control' disabled />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center mb-2">
+                            <div class="col-md-9">
+                                <div class="labelName">
+                                    <label class="control-label">13c. Refundable portion of credit for qualified sick and family leave wages for leave taken before April1, 2021 :</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="labelName d-flex">
+                                    <span class='mt-1 pe-2'>13c</span>
+                                    @Html.TextBoxFor(model => model.Form941Records[0].ReturnData.Form941.Line13c, new { @class = "form-control" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center mb-2">
+                            <div class="col-md-9">
+                                <div class="labelName">
+                                    <label class="control-label">13d. Reserved for future use :</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="labelName d-flex">
+                                    <span class='mt-1 pe-2'>13d</span>
+                                    <input type="text" class='form-control' disabled />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center mb-2">
+                            <div class="col-md-9">
+                                <div class="labelName">
+                                    <label class="control-label">13e. Refundable portion of credit for qualified sick and family leave wages for leave taken after March 31, 2021, and before October 1, 2021 :</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="labelName d-flex">
+                                    <span class='mt-1 pe-2'>13e</span>
+                                    @Html.TextBoxFor(model => model.Form941Records[0].ReturnData.Form941.Line13e, new { @class = "form-control" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center mb-2">
+                            <div class="col-md-9">
+                                <div class="labelName">
+                                    <label class="control-label">13f. Reserved for future use :</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="labelName d-flex">
+                                    <span class='mt-1 pe-2'>13f</span>
+                                    <input type="text" class='form-control' disabled />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center mb-2">
+                            <div class="col-md-9">
+                                <div class="labelName">
+                                    <label class="control-label">13g. Total deposits and refundable credits :</label><span>Add lines 13a, 13c, and 13e</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="labelName d-flex">
+                                    <span class='mt-1 pe-2'>13g</span>
+                                    @Html.TextBoxFor(model => model.Form941Records[0].ReturnData.Form941.TotDepositAndRfdCrAmt, new { @class = "form-control" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center mb-2">
+                            <div class="col-md-9">
+                                <div class="labelName">
+                                    <label class="control-label">13h. Reserved for future use :</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="labelName d-flex">
+                                    <span class='mt-1 pe-2'>13h</span>
+                                    <input type="text" class='form-control' disabled />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center mb-2">
+                            <div class="col-md-9">
+                                <div class="labelName">
+                                    <label class="control-label">13i. Reserved for future use :</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="labelName d-flex">
+                                    <span class='mt-1 pe-2'>13i</span>
+                                    <input type="text" class='form-control' disabled />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center mb-2">
+                            <div class="col-md-9">
+                                <div class="labelName">
+                                    <label class="control-label">14. Balance due : </label><span>If line 12 is more than line 13g, enter the difference</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="labelName d-flex">
+                                    <span class='mt-1 pe-2'>14</span>
+                                    @Html.TextBoxFor(model => model.Form941Records[0].ReturnData.Form941.Line14, new { @class = "form-control" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center mb-2">
+                            <div class="col-md-9">
+                                <div class="labelName">
+                                    <label class="control-label">15. Overpayment :</label><span>If line 13g is more than line 12, enter the difference</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="labelName d-flex">
+                                    <span class='mt-1 pe-2'>15</span>
+                                    @Html.TextBoxFor(model => model.Form941Records[0].ReturnData.Form941.Line15, new { @class = "form-control" })
+
+                                </div>
+                            </div>
+                        </div>
                         <div class="row d-flex justify-content-center mb-2">
                             <div class="col-md-4">
                                 <div class="labelName">
@@ -666,6 +889,28 @@
                                 </div>
                             </div>
                         </div>
+                        <div class='d-flex align-items-center justify-content-between mt-5 px-5'>
+                            <div>
+                                <button type="button" class="btn_cancel  mb-3 float-left" onclick="navigateToPage('page1')">
+                                    <i class="fa fa-arrow-circle-left"></i>
+                                    Back
+                                </button>
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn_primary shadow btn_md float-right" onclick="navigateToPage('page3')">
+                                    Continue
+                                </button>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <!-- Page 3 content -->
+                    <div id="page3" class="form-page" style="display: none;">
+                        <!-- Your form fields for Page 3 -->
+
                         <h4 class="sub-head text-left mt-4 mb-3 " style="font-weight:bold">
                             16. Depositor Details
                         </h4>
@@ -835,7 +1080,7 @@
                                 <div class="col-md-6">
                                     <div class="labelName">
                                         <label class="control-label"><span class="text-danger">*</span>Final Date Wages Paid:</label>
-                                        @Html.TextBoxFor(model => model.Form941Records[0].ReturnHeader.BusinessStatusDetails.BusinessClosedDetails.FinalDateWagesPaid, new { @class = "form-control datepicker"})
+                                        @Html.TextBoxFor(model => model.Form941Records[0].ReturnHeader.BusinessStatusDetails.BusinessClosedDetails.FinalDateWagesPaid, new { @class = "form-control"})
                                     </div>
                                 </div>
                             </div>
@@ -913,27 +1158,164 @@
                                 </div>
                             </div>
                         </div>
+                        <h4 class="sub-head text-left mt-4 mb-3 " style="font-weight:bold">Form941 Details</h4>
+                        <div class="row d-flex justify-content-center mb-2">
+                            <div class="col-md-9">
+                                <div class="labelName">
+                                    <label class="control-label">19. Qualified health plan expenses allocable to qualified sick leave wages for leave taken before April 1, 2021 :</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="labelName d-flex">
+                                    <span class='mt-1 pe-2'>19</span>
+                                    @Html.TextBoxFor(model => model.Form941Records[0].ReturnData.Form941.Line19, new { @class = "form-control" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center mb-2">
+                            <div class="col-md-9">
+                                <div class="labelName">
+                                    <label class="control-label">20. Qualified health plan expenses allocable to qualified family leave wages for leave taken before April 1, 2021:</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="labelName d-flex">
+                                    <span class='mt-1 pe-2'>20</span>
+                                    @Html.TextBoxFor(model => model.Form941Records[0].ReturnData.Form941.Line20, new { @class = "form-control" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center mb-2">
+                            <div class="col-md-9">
+                                <div class="labelName">
+                                    <label class="control-label">21. Reserved for future use :</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="labelName d-flex">
+                                    <span class='mt-1 pe-2'>21</span>
+                                    <input type="text" class='form-control' disabled />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center mb-2">
+                            <div class="col-md-9">
+                                <div class="labelName">
+                                    <label class="control-label">22. Reserved for future use :</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="labelName d-flex">
+                                    <span class='mt-1 pe-2'>22</span>
+                                    <input type="text" class='form-control' disabled />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center mb-2">
+                            <div class="col-md-9">
+                                <div class="labelName">
+                                    <label class="control-label">23. Qualified sick leave wages for leave taken after March 31, 2021, and before October 1, 2021 :</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="labelName d-flex">
+                                    <span class='mt-1 pe-2'>23</span>
+                                    @Html.TextBoxFor(model => model.Form941Records[0].ReturnData.Form941.Line23, new { @class = "form-control" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center mb-2">
+                            <div class="col-md-9">
+                                <div class="labelName">
+                                    <label class="control-label">24. Qualified health plan expenses allocable to qualified sick leave wages reported on line 23 :</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="labelName d-flex">
+                                    <span class='mt-1 pe-2'>24</span>
+                                    @Html.TextBoxFor(model => model.Form941Records[0].ReturnData.Form941.Line24, new { @class = "form-control" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center mb-2">
+                            <div class="col-md-9">
+                                <div class="labelName">
+                                    <label class="control-label">25. Amounts under certain collectively bargained agreements allocable to qualified sick leave wages reported on line 23 :</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="labelName d-flex">
+                                    <span class='mt-1 pe-2'>25</span>
+                                    @Html.TextBoxFor(model => model.Form941Records[0].ReturnData.Form941.Line25, new { @class = "form-control" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center mb-2">
+                            <div class="col-md-9">
+                                <div class="labelName">
+                                    <label class="control-label">26. Qualified family leave wages for leave taken after March 31, 2021, and before October 1, 2021 :</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="labelName d-flex">
+                                    <span class='mt-1 pe-2'>26</span>
+                                    @Html.TextBoxFor(model => model.Form941Records[0].ReturnData.Form941.Line26, new { @class = "form-control" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center mb-2">
+                            <div class="col-md-9">
+                                <div class="labelName">
+                                    <label class="control-label">27. Qualified health plan expenses allocable to qualified family leave wages reported on line 26 :</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="labelName d-flex">
+                                    <span class='mt-1 pe-2'>27</span>
+                                    @Html.TextBoxFor(model => model.Form941Records[0].ReturnData.Form941.Line27, new { @class = "form-control" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center mb-2">
+                            <div class="col-md-9">
+                                <div class="labelName">
+                                    <label class="control-label">28. Amounts under certain collectively bargained agreements allocable to qualified family leave wages reported on line 26 :</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="labelName d-flex">
+                                    <span class='mt-1 pe-2'>28</span>
+                                    @Html.TextBoxFor(model => model.Form941Records[0].ReturnData.Form941.Line28, new { @class = "form-control" })
+
+                                </div>
+                            </div>
+                        </div>
                         <div class='d-flex align-items-center justify-content-between mt-5 px-5'>
                             <div>
-                                <button type="button" class="btn_cancel  mb-3 float-left" onclick="navigateToPage('page1')">
+                                <button type="button" class="btn_cancel  mb-3 float-left" onclick="navigateToPage('page2')">
                                     <i class="fa fa-arrow-circle-left"></i>
                                     Back
                                 </button>
                             </div>
                             <div>
-                                <button type="button" class="btn btn_primary shadow btn_md float-right" onclick="navigateToPage('page3')">
+                                <button type="button" class="btn btn_primary shadow btn_md float-right" onclick="navigateToPage('page4')">
                                     Continue
                                 </button>
                             </div>
                         </div>
-
-
-
                     </div>
 
-                    <!-- Page 3 content -->
-                    <div id="page3" class="form-page" style="display: none;">
-                        <!-- Your form fields for Page 3 -->
+                    <!-- Page 4 content -->
+                    <div id="page4" class="form-page" style="display: none;">
+                        <!-- Your form fields for Page 4 -->
+
                         <h4 class="sub-head text-left mt-4 mb-3 " style="font-weight:bold">
                             IRS Payment Details
                         </h4>
@@ -1052,7 +1434,7 @@
                                 <div class="col-md-6">
                                     <div class="labelName">
                                         <label class="control-label">Date Of Change:</label>
-                                        @Html.TextBoxFor(model => model.Form941Records[0].ReturnHeader.BusinessStatusDetails.BusinessTransferredDetails.DateOfChange, new {  @class = "form-control datepicker" })
+                                        @Html.TextBoxFor(model => model.Form941Records[0].ReturnHeader.BusinessStatusDetails.BusinessTransferredDetails.DateOfChange, new {  @class = "form-control" })
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -1169,13 +1551,13 @@
                         {
                             <div class='d-flex align-items-center justify-content-between mt-5 px-5'>
                                 <div>
-                                    <button type="button" class="btn_cancel btn-back  mb-3 float-left" onclick="navigateToPage('page2')" id="btnback">
+                                    <button type="button" class="btn_cancel btn-back  mb-3 float-left" onclick="navigateToPage('page3')" id="btnback">
                                         <i class="fa fa-arrow-circle-left"></i>
                                         Back
                                     </button>
                                 </div>
                                 <div>
-                                    <button type="button" class="btn btn_primary shadow btn_md float-right" onclick="UpdateForm941('@Model?.Form941Records[0].ReturnHeader.Business.BusinessId','@Model?.Form941Records[0].ReturnHeader.Business.BusinessNm','@Model?.Form941Records[0].ReturnHeader.Business.EINorSSN')" id="btnupdate">
+                                    <button type="button" class="btn btn_primary shadow btn_md float-right" onclick="UpdateForm941()" id="btnupdate">
                                         Update Form941
                                         <i class="fa fa-spinner fa-spin" aria-hidden="true" id="CreateSpinner" style="display:none"></i>
                                     </button>
@@ -1186,7 +1568,7 @@
                         {
                             <div class='d-flex align-items-center justify-content-between mt-5 px-5'>
                                 <div>
-                                    <button type="button" class="btn_cancel btn-back  mb-3 float-left" onclick="navigateToPage('page2')" id="btnback">
+                                    <button type="button" class="btn_cancel btn-back  mb-3 float-left" onclick="navigateToPage('page3')" id="btnback">
                                         <i class="fa fa-arrow-circle-left"></i>
                                         Back
                                     </button>
@@ -1196,19 +1578,18 @@
                                         ValidateForm
                                         <i class="fa fa-spinner fa-spin" aria-hidden="true" id="CreateSpinner" style="display:none"></i>
                                     </button>
-                                    <button type="button" class="btn btn_primary shadow btn_md float-right" onclick="createForm941('@Model?.Form941Records[0].ReturnHeader.Business.BusinessId','@Model?.Form941Records[0].ReturnHeader.Business.BusinessNm','@Model?.Form941Records[0].ReturnHeader.Business.EINorSSN')" id="btnCreate">
+                                    <button type="button" class="btn btn_primary shadow btn_md float-right" onclick="createForm941()" id="btnCreate">
                                         Create Form941
                                         <i class="fa fa-spinner fa-spin" aria-hidden="true" id="CreateSpinner" style="display:none"></i>
                                     </button>
                                 </div>
                             </div>
                         }
-
                     </div>
+                    <!-- Additional pages and buttons can be added in a similar manner -->
                     @Html.HiddenFor(x=>x.Form941Records[0].ReturnHeader.Business.BusinessId)
                     @Html.HiddenFor(x=>x.Form941Records[0].RecordId)
                     @Html.HiddenFor(x=>x.SubmissionId)
-
                 }
             </div>
         </div>
@@ -1257,18 +1638,8 @@
         });
         document.getElementById(pageId).style.display = "block";
     }
-    function IsPayrrollcheckbox() {
-        debugger
-        var ischeckeds = $("#IsPayrroll").is(":checked");
-        if (ischeckeds == true) {
-            $('#8974Popup').show();
 
-        }
-        else {
-            $('#8974Popup').hide();
-        }
-    }
-    function createForm941(businessId, businessName, tin) {
+    function createForm941() {
         var formdata = $("#Form941CreateForm").serialize();
         $("#btnCreate > i").show();
         $("#btnCreate").prop("disabled", true);
@@ -1283,12 +1654,6 @@
                 $('#myModal').modal("show");
                 $("#btnCreate > i").hide();
                 $("#btnCreate").prop("disabled", false);
-                $(".modal-close").click(function () {
-                    if ($(data).find('.sucesssrecord').length > 0) {
-                        window.location.href = "/Form941/Get941List?businessId=" + businessId + "&businessName=" + businessName + "&tin=" + tin;
-
-                    }
-                });
             },
             error: function (err) {
                 console.log(err.responseText);
@@ -1297,7 +1662,7 @@
             }
         });
     }
-    function UpdateForm941(businessId, businessName, tin) {
+    function UpdateForm941() {
         var formdata = $("#Form941CreateForm").serialize();
         $("#btnCreate > i").show();
         $("#btnCreate").prop("disabled", true);
@@ -1312,12 +1677,6 @@
                 $('#myModal').modal("show");
                 $("#btnCreate > i").hide();
                 $("#btnCreate").prop("disabled", false);
-                $(".modal-close").click(function () {
-                    if ($(data).find('.sucesssrecord').length > 0) {
-                        window.location.href = "/Form941/Get941List?businessId=" + businessId + "&businessName=" + businessName + "&tin=" + tin;
-
-                    }
-                });
             },
             error: function (err) {
                 console.log(err.responseText);
@@ -1380,19 +1739,24 @@
             SemiWeeklyDiv.style.display = 'none';
         }
     }
-
+    // Function to initialize datepicker
+    function initializeDatepicker(element) {
+        $(element).datepicker();
+    }
     if ('@Model?.SubmissionId' == null && '@Model?.SubmissionId' == "") {
-        debugger
         $("#dynamic-tableincometaxdetails").append('<tr class="align-middle"><td><div class="mt-2 error text-center">1</div></td><td><div class="mt-2 error"><input   name="Form941Records[0].ReturnData.Form941.Form8974.Form8974IncomeTaxDetails[0].IncomeTaxPeriodEndDate"  class="form-control incomeenddate datepicker"  style="margin-right:10px"></div></td><td><div class="mt-2 error"><select   name="Form941Records[0].ReturnData.Form941.Form8974.Form8974IncomeTaxDetails[0].IncomeTaxReturnFiledForm"  class="form-control form-select incometaxreturnfiled" style="margin-right:10px"><option value="">select</option>' + enumTaxTypeOptions + '</select></div></td><td><div class="mt-2 error"><input  name="Form941Records[0].ReturnData.Form941.Form8974.Form8974IncomeTaxDetails[0].IncomeTaxReturnFiledDate"  type="text"  class="form-control  incometaxreturnfileddate datepicker"></div></td><td><div class="mt-2 error"><input  name="Form941Records[0].ReturnData.Form941.Form8974.Form8974IncomeTaxDetails[0].Form6765EIN"  type="text"  class="form-control form6765ein"></div></td><td><div class="mt-2 error"><input  name="Form941Records[0].ReturnData.Form941.Form8974.Form8974IncomeTaxDetails[0].Form6765Line44Amt"  type="text"  class="form-control form6765line44"></div></td><td><div class="mt-2 error"><input  name="Form941Records[0].ReturnData.Form941.Form8974.Form8974IncomeTaxDetails[0].PreviousPeriodRemainingCreditAmt"  type="text"  class="form-control previousperiodamt"></div></td><td><div class="mt-2 error"><input  name="Form941Records[0].ReturnData.Form941.Form8974.Form8974IncomeTaxDetails[0].RemainingCredit"  type="text" class="form-control remaniningcredit"></div></td><td class="text-center"><a class=" btn-rounded-hover delete-recordincome  rounded-circle p-2 lh-1" ><i class="mdi mdi-delete-outline text-muted fs-4" data-bs-toggle="tooltip" data-bs-placement="bottom" role="button" aria-label="delete" data-bs-original-title="delete"></i > </a></td > </tr>');
         $('.delete-recordincome').hide();
     }
+
     var i = 2;
     var j = 1;
+
     var s = 2;
     var t = 1;
+
     var p = 2;
     var q = 1;
-    var a = 1;
+    var a = 2;
     var b = 1;
     $(document).ready(function () {
 
@@ -1401,10 +1765,7 @@
             initializeDatepicker(this);
             $(this).datepicker('show'); // Show the datepicker when the input is clicked
         });
-        $('.datepicker').datepicker({
-            format: 'yyyy-mm-dd',
-            autoclose: true
-        });
+
         //added class to inputs
         $('a.add-ScheduleBMonth1').click(function () {
             debugger
@@ -1515,7 +1876,6 @@
 
         //added class to inputs
         $('a.add-Form8974').click(function () {
-            debugger
             if (a <= 5) {
                 debugger
                 $('.delete-recordincome').show();
@@ -1564,10 +1924,6 @@
 
 
     });
-    // Function to initialize datepicker
-    function initializeDatepicker(element) {
-        $(element).datepicker();
-    }
     function EnableOrDisableFields() {
         var country = document.getElementById("country");
         country.disabled = document.getElementById("IsForeign").checked ? false : true;
@@ -1637,7 +1993,7 @@
     function IRSPaymentOption() {
         debugger
         var irsvalue = $("#IRSPaymentOptionid").val();
-        var irsdiv = document.getElementById('irsdetails');
+        var irsdiv = document.getElementById('');
         if (irsvalue == "EFW") {
             irsdiv.style.display = 'block'; // Show the div
         }
@@ -1764,7 +2120,7 @@
         }
     }
     window.onload = function () {
-        IsPayrrollcheckbox()
+
         SignatureType()
         IsBusinessTransferred()
         ThirdPartyDesignee()
@@ -1806,7 +2162,7 @@
         }
 
     }
-                                for (j = 0; j < ScheduleBMonth1Amt.length; j++) {
+                    for (j = 0; j < ScheduleBMonth1Amt.length; j++) {
                 i = j + 1;
                 var ScheduleBMonth1Amtdetails = ScheduleBMonth1Amt[j];
                 $("#dynamic-table1").append('<tr class="align-middle"><td><div class="mt-2 error text-center">' + i + '</div></td><td><div class="mt-2 error"><select   name="Form941Records[0].ReturnData.DepositScheduleType.SemiWeeklyDepositor.ScheduleBMonth1Amt[' + j + '].Day"  class="form-control form-select day" id="daymonth1' + j + '"style="margin-right:10px"><option value="">Day</option>' + optionsHtml + '</select></div></td><td><div class="mt-2 error"><input  name="Form941Records[0].ReturnData.DepositScheduleType.SemiWeeklyDepositor.ScheduleBMonth1Amt[' + j + '].Amt" value="' + (ScheduleBMonth1Amtdetails.Amt != null && ScheduleBMonth1Amtdetails.Amt !== "" ? ScheduleBMonth1Amtdetails.Amt : "") + '" type="text" placeholder="Amount" class="form-control amount"></div></td><td class="text-center"><a class=" btn-rounded-hover delete-record1  rounded-circle p-2 lh-1" ><i class="mdi mdi-delete-outline text-muted fs-4" data-bs-toggle="tooltip" data-bs-placement="bottom" role="button" aria-label="delete" data-bs-original-title="delete"></i > </a></td > </tr>');
@@ -1849,26 +2205,29 @@
             $("#semiweekly :input").val(null);
             SemiWeeklyDiv.style.display = 'none';
         }
+
+
         debugger
     @{
+
         var Form8974IncomeTaxDetailsData = "";
         if (Model?.Form941Records[0]?.ReturnData?.Form941?.Form8974?.Form8974IncomeTaxDetails?.Count > 0)
         {
             Form8974IncomeTaxDetailsData = Newtonsoft.Json.JsonConvert.SerializeObject(Model?.Form941Records[0]?.ReturnData?.Form941?.Form8974?.Form8974IncomeTaxDetails);
+            @:Form8974IncomeTaxDetails = @Html.Raw(Form8974IncomeTaxDetailsData);
         }
     }
-                     var Form8974IncomeTaxDetails = @Html.Raw(Form8974IncomeTaxDetailsData != "" ? Form8974IncomeTaxDetailsData : "[]");
-        for (b = 0; b < Form8974IncomeTaxDetails.length; b++) {
-            debugger
-            a = b + 1;
+                for ( b = 0; b < Form8974IncomeTaxDetails.length; b++) {
+             a = b + 1;
             var form8974 = Form8974IncomeTaxDetails[b];
             $("#dynamic-tableincometaxdetails").append('<tr class="align-middle"><td><div class="mt-2 error text-center">' + a + '</div></td><td><div class="mt-2 error"><input   name="Form941Records[0].ReturnData.Form941.Form8974.Form8974IncomeTaxDetails[' + b + '].IncomeTaxPeriodEndDate" value="' + (form8974.IncomeTaxPeriodEndDate != null && form8974.IncomeTaxPeriodEndDate !== "" ? form8974.IncomeTaxPeriodEndDate : "") + '"  class="form-control incomeenddate datepicker" style="margin-right:10px"></div></td><td><div class="mt-2 error"><select   name="Form941Records[0].ReturnData.Form941.Form8974.Form8974IncomeTaxDetails[' + b + '].IncomeTaxReturnFiledForm"  class="form-control form-select incometaxreturnfiled" id="incometaxreturnfiledid' + b + '"style="margin-right:10px"><option value="">select</option>' + enumTaxTypeOptions + '</select></div></td><td><div class="mt-2 error"><input  name="Form941Records[0].ReturnData.Form941.Form8974.Form8974IncomeTaxDetails[' + b + '].IncomeTaxReturnFiledDate" value="' + (form8974.IncomeTaxReturnFiledDate != null && form8974.IncomeTaxReturnFiledDate !== "" ? form8974.IncomeTaxReturnFiledDate : "") + '"  type="text"  class="form-control incometaxreturnfileddate datepicker"></div></td><td><div class="mt-2 error"><input  name="Form941Records[0].ReturnData.Form941.Form8974.Form8974IncomeTaxDetails[' + b + '].Form6765EIN" value="' + (form8974.Form6765EIN != null && form8974.Form6765EIN !== "" ? form8974.Form6765EIN : "") + '"  type="text"  class="form-control form6765ein"></div></td><td><div class="mt-2 error"><input  name="Form941Records[0].ReturnData.Form941.Form8974.Form8974IncomeTaxDetails[' + b + '].Form6765Line44Amt" value="' + (form8974.Form6765Line44Amt != null && form8974.Form6765Line44Amt !== "" ? form8974.Form6765Line44Amt : "") + '" type="text"  class="form-control form6765line44"></div></td><td><div class="mt-2 error"><input  name="Form941Records[0].ReturnData.Form941.Form8974.Form8974IncomeTaxDetails[' + b + '].PreviousPeriodRemainingCreditAmt"  value="' + (form8974.PreviousPeriodRemainingCreditAmt != null && form8974.PreviousPeriodRemainingCreditAmt !== "" ? form8974.PreviousPeriodRemainingCreditAmt : "") + '" type="text"  class="form-control previousperiodamt"></div></td><td><div class="mt-2 error"><input  name="Form941Records[0].ReturnData.Form941.Form8974.Form8974IncomeTaxDetails[' + b + '].RemainingCredit"  value="' + (form8974.RemainingCredit != null && form8974.RemainingCredit !== "" ? form8974.RemainingCredit : "") + '" type="text"  class="form-control remaniningcredit"></div></td><td class="text-center"><a class=" btn-rounded-hover delete-recordincome  rounded-circle p-2 lh-1" ><i class="mdi mdi-delete-outline text-muted fs-4" data-bs-toggle="tooltip" data-bs-placement="bottom" role="button" aria-label="delete" data-bs-original-title="delete"></i > </a></td > </tr>');
             $("#incometaxreturnfiledid" + b).val(form8974.IncomeTaxReturnFiledForm).attr("selected", "selected");
             if (Form8974IncomeTaxDetails.length == 1) {
                 $(".delete-recordincome").hide();
             }
-            a = a + 1;
+            a=a+1;
         }
     }
+
 
 </script>

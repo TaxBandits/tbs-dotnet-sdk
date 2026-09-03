@@ -14,15 +14,7 @@ namespace Form941SDK.Models.Form941List
         public Guid? BusinessId { get; set; }
 
         [DataMember]
-        public string BusinessNm { get; set; }  
-        [DataMember]
-        public string FirstNm { get; set; }        
-        [DataMember]
-        public string LastNm { get; set; }       
-        [DataMember]
-        public string MiddleNm { get; set; }        
-        [DataMember]
-        public string Suffix { get; set; }
+        public string BusinessNm { get; set; }
 
         [DataMember]
         public string EIN { get; set; }

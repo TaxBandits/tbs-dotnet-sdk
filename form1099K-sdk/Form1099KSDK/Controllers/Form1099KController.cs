@@ -17,11 +17,11 @@ namespace Form1099KSDK.Controllers
     public class Form1099KController : Controller
     {
         #region CreateForm 1099K View
-        public ActionResult CreateForm1099K(Guid businessId, string businessName, string firstName, string lastName, string MiddleName, string suffix, string tin)
+        public ActionResult CreateForm1099K(Guid businessId, string businessName, string tin)
         {
-            if (businessId != Guid.Empty && (!string.IsNullOrWhiteSpace(businessName) || !string.IsNullOrWhiteSpace(firstName) && !string.IsNullOrWhiteSpace(lastName)) && !string.IsNullOrWhiteSpace(tin))
+            if (businessId != Guid.Empty && !string.IsNullOrWhiteSpace(businessName) && !string.IsNullOrWhiteSpace(tin))
             {
-                Form1099KCreateRequest createRequest = new Form1099KCreateRequest { ReturnHeader = new APIReturnHeader { Business = new Business { BusinessId = businessId, BusinessNm = businessName, FirstNm = firstName, LastNm = lastName, MiddleNm= MiddleName, Suffix = suffix,  EINorSSN = tin } } };
+                Form1099KCreateRequest createRequest = new Form1099KCreateRequest { ReturnHeader = new APIReturnHeader { Business = new Business { BusinessId = businessId, BusinessNm = businessName, EINorSSN = tin } } };
                 return View(createRequest);
             }
             return View();
@@ -79,7 +79,7 @@ namespace Form1099KSDK.Controllers
 
         #region Form 1099K List
         [HttpGet]
-        public ActionResult GetForm1099KList(Guid businessId, string businessName, string firstName, string lastName, string MiddleName, string suffix, string tin)
+        public ActionResult GetForm1099KList(Guid businessId, string businessName, string tin)
         {
             var form1099KListRepsone = new Form1099KListResponse();
             var form1099KListResponseJSON = string.Empty;
@@ -122,10 +122,6 @@ namespace Form1099KSDK.Controllers
                         form1099KListRepsone.Form1099Records = new List<Form1099KRecordsList>();
                         businessDetails.BusinessId = businessId;
                         businessDetails.BusinessNm = businessName;
-                        businessDetails.FirstNm = firstName;
-                        businessDetails.MiddleNm = MiddleName;
-                        businessDetails.LastNm = lastName;
-                        businessDetails.Suffix = suffix;
                         businessDetails.EINorSSN = tin;
                         form1099KListRepsone.Form1099Records.Add(businessDetails);
                     }

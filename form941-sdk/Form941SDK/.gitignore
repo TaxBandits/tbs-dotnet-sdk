@@ -1,0 +1,46 @@
+# Build output
+**/bin/
+**/obj/
+**/out/
+**/publish/
+
+# Visual Studio
+.vs/
+.vscode/
+*.user
+*.suo
+
+# App settings
+appsettings.Development.json
+appsettings.Production.json
+appsettings.Staging.json
+appsettings.json
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Secrets
+secrets.json
+*.secrets.json
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# NuGet
+packages/
+*.nupkg
+
+# User secrets
+**/secrets.json
+**/appsettings.Development.json
+
+# Config files
+*.config.yaml
+*.config.yml

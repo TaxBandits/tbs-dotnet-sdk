@@ -36,7 +36,7 @@
         public const string AWSAccessKey = "AWSAccessKey";
         public const string AWSSecretKey = "AWSSecretKey";
         //AWS Bucket
-        public const string AWSS3BucketName = "BucketName";
+        public const string BucketName = "BucketName";
         //Base64Key
         public const string Base64Key = "Base64Key";
         //AmazonS3Path

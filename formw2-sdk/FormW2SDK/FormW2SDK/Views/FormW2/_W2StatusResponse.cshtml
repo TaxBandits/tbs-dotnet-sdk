@@ -1,0 +1,294 @@
+﻿@model FormW2SDK.Models.FormW2Status.FormW2StatusResponse
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalToggleLabel">FormW2 Status Response</h5>
+    <button type="button" class="btn-close bg-white rounded-circle border-0 fw-bold position-absolute end-n-10 top-n-13 modal-close button-hide fs-18 fw-500" data-bs-dismiss="modal" aria-label="Close">X</button>
+</div>
+<div class="modal-body">
+    <div class="table-container mt-2 mb-4">
+        <table>
+            <tbody>
+                <tr class="fw-600 ">
+                    <th class="text-center fw-600 bg-dull-blue" width="25%">Status Code</th>
+                    <th class="text-center" width="30%">Status Name</th>
+                    <th class="text-center">Status Message</th>
+                </tr>
+                <tr>
+                    <td class="text-center align-top">
+                        @Model.StatusCode
+                    </td>
+                    <td class="text-center align-top">
+                        @Model.StatusName
+                    </td>
+                    @if (Model.StatusCode != 200)
+                    {
+                        <td class="text-center border-radious-bottom-right align-top text-danger">
+                            @Model.StatusMessage
+                        </td>
+                    }
+                    else
+                    {
+                        <td class="text-center border-radious-bottom-right align-top text-success">
+                            @Model.StatusMessage
+                        </td>
+                    }
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    @if (Model != null)
+    {
+        if (Model.Errors != null && Model.Errors.Count > 0)
+        {
+            <h2 class="tabel-sub-head">Error</h2>
+            <div class="table-container mb-3">
+                <table>
+                    <tbody>
+                        <tr class="fw-600 ">
+                            <th class="text-center fw-600" width="30%">Id</th>
+                            <th class="text-center">Name</th>
+                            <th class="text-center">Message</th>
+                        </tr>
+                        @foreach (var item in Model.Errors)
+                        {
+                            <tr>
+                                <td class="text-center align-top">@item.Id</td>
+                                <td class="text-center align-top">@item.Name</td>
+                                <td class="text-center border-radious-bottom-right align-top">@item.Message</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else if (Model.FormW2Records.ErrorRecords != null && Model.FormW2Records.ErrorRecords.Count > 0)
+        {
+            <h2 class="tabel-sub-head">Error Records</h2>
+            <div class="table-container mb-3">
+                <table>
+                    <tbody>
+                        <tr class="fw-600 ">
+                            <th class="text-center fw-600" width="30%">Sequence Id</th>
+                            <th class="text-center">Record Id</th>
+                            <th class="text-center fw-600" width="30%">Id</th>
+                            <th class="text-center">Name</th>
+                            <th class="text-center">Message</th>
+                        </tr>
+                        @foreach (var item in Model.FormW2Records.ErrorRecords)
+                        {
+                            @foreach (var error in item.Errors)
+                            {
+                                <tr>
+                                    <td class="text-center align-top">@item.SequenceId</td>
+                                    <td class="text-center align-top">@item.RecordId</td>
+                                    <td class="text-center border-radious-bottom-right align-top">@error.Id</td>
+                                    <td class="text-center border-radious-bottom-right align-top">@error.Name</td>
+                                    <td class="text-center border-radious-bottom-right align-top">@error.Message</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    }
+    @if (Model != null && Model.StatusCode == 200)
+    {
+        <div class="d-flex justify-content-between align-items-center p-3">
+            <div>
+                <div class="form-label fw-500 text-muted mb-0">Business Id</div>
+                <div class=" text-dark fw-bold mb-3">@Model.BusinessId</div>
+            </div>
+            <div>
+                <div class="form-label fw-500 text-muted mb-0">Submission Id</div>
+                <div class=" text-dark fw-bold mb-3">@Model.SubmissionId</div>
+            </div>
+            <div>
+                <div class="form-label fw-500 text-muted mb-0">Payer Ref</div>
+                <div class="text-dark fw-bold text-center mb-3">
+                    @if (Model.PayerRef != null)
+                    {
+                        @Model.PayerRef
+
+                    }
+                    else
+                    {
+                        <span>-</span>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="border border-1 rounded">
+            <div class="d-flex justify-content-between align-items-center px-2 bg-light">
+                <div class="fs-6 p-1 fw-bold">Success Records </div>
+            </div>
+            @foreach (var item in Model.FormW2Records.SuccessRecords)
+            {
+                <div class="d-flex justify-content-between align-items-center p-3  border-bottom-1">
+                    <div>
+                        <div class="form-label fw-500 text-muted mb-0">SequenceId</div>
+                        <div class=" text-dark fw-bold">@item.SequenceId</div>
+                    </div>
+                    <div>
+                        <div class="form-label fw-500 text-muted mb-0">RecipientId</div>
+                        <div class=" text-dark fw-bold">@item.EmployeeId</div>
+                    </div>
+                    <div>
+                        <div class="fs-6 fw-500 text-muted mb-0">RecordId</div>
+                        <div class="text-dark fw-bold text-center">@item.RecordId</div>
+                    </div>
+                </div>
+                <div class="mb-3 border-top px-4">
+                    <div class="fs-5 mt-2 mb-2">Federal Return</div>
+                    <div class="pb-2 row">
+                        <div class="col-4">
+                            <div class="form-label fw-500 text-muted  mb-0">Status</div>
+                            <div class="fw-bold text-dark">@item.FederalReturn.Status</div>
+                        </div>
+                        <div class="col-5">
+                            <div class="form-label fw-500 text-muted mb-0">StatusTs</div>
+
+                            <div class="fw-bold text-dark">
+                                @if (item.FederalReturn.StatusTs != null)
+                                {
+                                    @item.FederalReturn.StatusTs
+
+                                }
+                                else
+                                {
+                                    <span>-</span>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="d-flex">
+                                <div class="pe-3">
+                                    <div class="form-label fw-500 text-muted  mb-0">Info</div>
+                                    <div class="fw-bold text-dark">
+                                        @if (item.FederalReturn.Info != null)
+                                        {
+                                            @item.FederalReturn.Info
+
+                                        }
+                                        else
+                                        {
+                                            <span>-</span>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @if (item.Postal != null)
+                {
+                    <div class="mb-3 border-top px-4">
+                        <div class="fs-5 mt-2 mb-2">Postal Mailing</div>
+                        <div class="pb-2 row">
+                            <div class="col-4">
+                                <div class="form-label fw-500 text-muted  mb-0">Status</div>
+                                <div class="fw-bold text-dark">@item.Postal.Status</div>
+                            </div>
+                            <div class="col-5">
+                                <div class="form-label fw-500 text-muted mb-0">StatusTs</div>
+                                <div class="fw-bold text-dark">
+                                    @if (item.Postal.StatusTs != null)
+                                    {
+                                        @item.Postal.StatusTs
+
+                                    }
+                                    else
+                                    {
+                                        <span>-</span>
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="d-flex">
+                                    <div class="pe-3">
+                                        <div class="form-label fw-500 text-muted  mb-0">Info</div>
+                                        <div class="fw-bold text-dark">
+                                            @if (item.Postal.Info != null)
+                                            {
+                                                @item.Postal.Info
+
+                                            }
+                                            else
+                                            {
+                                                <span>-</span>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                @if (item.OnlineAccess != null)
+                {
+                    <div class="mb-3 border-top px-4">
+                        <div class="fs-5 mt-2 mb-2">Online Access</div>
+                        <div class="pb-2 row">
+                            <div class="col-4">
+                                <div class="form-label fw-500 text-muted  mb-0">Status</div>
+                                <div class="fw-bold text-dark">@item.OnlineAccess.Status</div>
+                            </div>
+                            <div class="col-5">
+                                <div class="form-label fw-500 text-muted  mb-0">Email</div>
+                                <div class="fw-bold text-dark">
+                                    @if (item.OnlineAccess.Email != null)
+                                    {
+                                        @item.OnlineAccess.Email
+
+                                    }
+                                    else
+                                    {
+                                        <span>-</span>
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-label fw-500 text-muted mb-0">Info</div>
+                                <div class="fw-bold text-dark">
+                                    @if (item.OnlineAccess.Info != null)
+                                    {
+                                        @item.OnlineAccess.Info
+
+                                    }
+                                    else
+                                    {
+                                        <span>-</span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                @if (item.StateReturns != null)
+                {
+                    <div class="mb-3 border-top px-4">
+                        <div class="fs-5 mt-2 mb-2">State Return</div>
+                        <div class="mt-4">
+                            <table>
+                                <tr class="fw-600 ">
+                                    <th class="text-center fw-600 bg-dull-blue" width="25%">State Code</th>
+                                    <th class="text-center" width="30%">Status</th>
+                                    <th class="text-center">Status Ts</th>
+                                </tr>
+                                @foreach (var state in item.StateReturns)
+                                {
+                                    <tr>
+                                        <td class="text-center align-top">@state.StateCd</td>
+                                        <td class="text-center align-top">@state.Status</td>
+                                        <td class="text-center align-top">@state.StatusTs</td>
+
+                                    </tr>
+                                }
+
+                            </table>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    }
+</div>

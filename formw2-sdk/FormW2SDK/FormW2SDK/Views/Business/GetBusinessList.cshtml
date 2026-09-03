@@ -1,0 +1,71 @@
+﻿@model FormW2SDK.Models.Business.BusinessListResponse
+@using FormW2SDK.Models.Utilities
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    @if (Model != null)
+    {
+        <div class='d-flex align-items-center justify-content-between mt-5 pt-2'>
+            <div>
+                <h1 class='head-1'>Businesses</h1>
+                <div class="heading-bottom-line position-relative pb-0  mb-3"></div>
+            </div>
+            <div>
+                <button class="btn btn_primary shadow btn_md float-right" style="float: right;" onclick="location.href='@Url.Action("CreateBusiness", "Business")'"> Create Business</button>
+            </div>
+        </div>
+        <table class="table table-striped mt-4 table-bordered text-center">
+            <tr>
+                <th class="text-center">Business Id</th>
+                <th class="text-center">Business Name</th>
+                <th class="text-center">Email</th>
+                <th class="text-center">Action</th>
+            </tr>
+            <tbody>
+                @foreach (var BizDetails in Model.Businesses)
+                {
+                    <tr>
+                        <td style="text-align:left">
+                            @BizDetails.BusinessId
+                        </td>
+                        <td style="text-align:left">
+                            @BizDetails.BusinessNm
+                        </td>
+                        <td style="text-align:left">
+                            @BizDetails.Email
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-primary status-btn btn_smm me-2" onclick="location.href='@Url.Action("CreateFormW2", "FormW2", new { businessId = BizDetails.BusinessId,businessName=BizDetails.BusinessNm,tin=BizDetails.EINorSSN})'">
+                                FormW2
+                            </button>
+                            <button type="button" class="btn btn-primary status-btn btn_smm me-2" onclick="location.href='@Url.Action("GetW2List", "FormW2", new { businessId = BizDetails.BusinessId,businessName=BizDetails.BusinessNm,tin=BizDetails.EINorSSN})'">
+                                List
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <button class="btn_cancel mb-3" onclick="location.href='@Url.Action("Index", "Home")'">
+            <i class="fa fa-arrow-circle-left"></i>
+            Back
+        </button>
+    }
+    else
+    {
+        <div class="mt-5">
+            <div class="d-flex align-items-center justify-content-center">
+                <p class="mt-2 mb-0 text-center text-danger fw-600">
+                    Before you submit TIN Request in your TaxBandits Account,You Should have atleast one Business in your account. To add a new business, click 'Create Business' button below.
+                </p>
+            </div>
+            <div class="text-center mt-4">
+                <button class="btn btn_primary shadow btn_md" onclick="location.href='@Url.Action("CreateBusiness", "Business")'"> Create Business</button>
+            </div>
+            <div>
+                <button class="btn_cancel  mb-3" onclick="location.href='@Url.Action("Index", "Home")'"><i class="fa fa-arrow-circle-left"></i> Back   </button>
+            </div>
+        </div>
+    }
+</div>

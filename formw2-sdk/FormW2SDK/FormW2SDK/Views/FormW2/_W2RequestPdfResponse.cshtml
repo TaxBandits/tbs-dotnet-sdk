@@ -1,0 +1,216 @@
+﻿@model FormW2SDK.Models.FormW2RequestPdfUrls.RequestPdfUrlsResponse
+
+@if (Model != null)
+{
+    @if (Model.Errors != null)
+    {
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalToggleLabel">FormW2 RequestPdfUrl Response</h5>
+            <button type="button" class="btn-close bg-white rounded-circle border-0 fw-bold position-absolute end-n-10 top-n-13 modal-close button-hide fs-18 fw-500" data-bs-dismiss="modal" aria-label="Close">X</button>
+        </div>
+        <div class="modal-body">
+            @if (Model.Errors != null && Model.Errors.Count > 0)
+            {
+                <h2 class="tabel-sub-head">Error</h2>
+                <div class="table-container mb-3">
+                    <table>
+                        <tbody>
+                            <tr class="fw-600 ">
+                                <th class="text-center fw-600" width="30%">Id</th>
+                                <th class="text-center">Name</th>
+                                <th class="text-center">Message</th>
+                            </tr>
+                            @foreach (var item in Model.Errors)
+                            {
+                                <tr>
+                                    <td class="text-center align-top">@item.Id</td>
+                                    <td class="text-center align-top">@item.Name</td>
+                                    <td class="text-center border-radious-bottom-right align-top">@item.Message</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    }
+    else if (Model.FormW2Records != null)
+    {
+        @if (Model.FormW2Records.ErrorRecords != null && Model.FormW2Records.ErrorRecords.Count > 0)
+        {
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalToggleLabel">FormW2 RequestPdfUrl Response</h5>
+                <button type="button" class="btn-close bg-white rounded-circle border-0 fw-bold position-absolute end-n-10 top-n-13 modal-close button-hide fs-18 fw-500" data-bs-dismiss="modal" aria-label="Close">X</button>
+            </div>
+            <div class="modal-body">
+                <h2 class="tabel-sub-head">Error Records</h2>
+                <div class="table-container mb-3">
+                    <table>
+                        <tbody>
+                            <tr class="fw-600 ">
+                                <th class="text-center fw-600" width="30%">Record Id</th>
+                                <th class="text-center">Status</th>
+                                <th class="text-center">Message</th>
+                            </tr>
+                            @foreach (var item in Model.FormW2Records.ErrorRecords)
+                            {
+                                <tr>
+                                    <td class="text-center border-radious-bottom-right align-top">@item.RecordId</td>
+                                    <td class="text-center border-radious-bottom-right align-top">@item.Status</td>
+                                    <td class="text-center border-radious-bottom-right align-top">@item.Message</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+        else if (Model.FormW2Records.SuccessRecords.Count > 0)
+        {
+            <div class="offcanvas-body">
+                <div class="table-container mt-2 mb-4">
+                    <table>
+                        <tbody>
+                            <tr class="fw-600 ">
+                                <th class="text-center">PDF Copy</th>
+                                <th class="text-center">PDF URL</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                            @foreach (var item in Model.FormW2Records.SuccessRecords)
+                            {
+                                <tr>
+                                    <td class="taL">Copy1</td>
+                                    <td class="taL">
+                                        @if (item.Files.Copy1.Masked != null)
+                                        {
+                                            @item.Files.Copy1.Masked
+                                        }
+                                        else if (item.Files.Copy1.Unmasked != null)
+                                        {
+                                            @item.Files.Copy1.Unmasked
+                                        }
+                                    </td>
+                                    <td class="text-center border-radious-bottom-right align-top text-danger">
+                                        @if (item.Files.Copy1.Masked != null)
+                                        {
+                                            <button class="btn btn-primary status-btn btn_smm" onclick="ViewPdf('@item.Files.Copy1.Masked')">
+                                                View
+                                            </button>
+                                        }
+                                        else if (item.Files.Copy1.Unmasked != null)
+                                        {
+                                            <button class="btn btn-primary status-btn btn_smm" onclick="ViewPdf('@item.Files.Copy1.Unmasked')">
+                                                View
+                                            </button>
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="taL">Copy2</td>
+                                    <td class="taL">
+                                        @if (item.Files.Copy2.Masked != null)
+                                        {
+                                            @item.Files.Copy2.Masked
+                                        }
+                                        else if (item.Files.Copy2.Unmasked != null)
+                                        {
+                                            @item.Files.Copy2.Unmasked
+                                        }
+                                    </td>
+                                    <td class="text-center border-radious-bottom-right align-top text-danger">
+                                        @if (item.Files.Copy2.Masked != null)
+                                        {
+                                            <button class="btn btn-primary status-btn btn_smm" onclick="ViewPdf('@item.Files.Copy2.Masked')">
+                                                View
+                                            </button>
+                                        }
+                                        else if (item.Files.Copy2.Unmasked != null)
+                                        {
+                                            <button class="btn btn-primary status-btn btn_smm" onclick="ViewPdf('@item.Files.Copy2.Unmasked')">
+                                                View
+                                            </button>
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="taL">CopyB</td>
+                                    <td class="taL">
+                                        @if (item.Files.CopyB.Masked != null)
+                                        {
+                                            @item.Files.CopyB.Masked
+                                        }
+                                        else if (item.Files.CopyB.Unmasked != null)
+                                        {
+                                            @item.Files.CopyB.Unmasked
+                                        }
+                                    </td>
+                                    <td class="text-center border-radious-bottom-right align-top text-danger">
+                                        @if (item.Files.CopyB.Masked != null)
+                                        {
+                                            <button class="btn btn-primary status-btn btn_smm" onclick="ViewPdf('@item.Files.CopyB.Masked')">
+                                                View
+                                            </button>
+                                        }
+                                        else if (item.Files.CopyB.Unmasked != null)
+                                        {
+                                            <button class="btn btn-primary status-btn btn_smm" onclick="ViewPdf('@item.Files.CopyB.Unmasked')">
+                                                View
+                                            </button>
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="taL">CopyC</td>
+                                    <td class="taL">
+                                        @if (item.Files.CopyC.Masked != null)
+                                        {
+                                            @item.Files.CopyC.Masked
+                                        }
+                                        else if (item.Files.CopyC.Unmasked != null)
+                                        {
+                                            @item.Files.CopyC.Unmasked
+                                        }
+                                    </td>
+                                    <td class="text-center border-radious-bottom-right align-top text-danger">
+                                        @if (item.Files.CopyC.Masked != null)
+                                        {
+                                            <button class="btn btn-primary status-btn btn_smm" onclick="ViewPdf('@item.Files.CopyC.Masked')">
+                                                View
+                                            </button>
+                                        }
+                                        else if (item.Files.CopyC.Unmasked != null)
+                                        {
+                                            <button class="btn btn-primary status-btn btn_smm" onclick="ViewPdf('@item.Files.CopyC.Unmasked')">
+                                                View
+                                            </button>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        }
+    }
+}
+<script>
+    function ViewPdf(pdfUrl) {
+        $.ajax({
+            url: "/FormW2/_ViewRequestPdfUrl/",
+            cache: false,
+            type: 'GET',
+            data: { PdfUrl: pdfUrl },
+            success: function (data) {
+                $(".modal-dialog").addClass("edit-dialog");
+                $('#ModelBody').html(data);
+                $('#myModal').modal("show");
+            },
+            error: function (err) {
+                console.log(err.responseText);
+            }
+        });
+    }
+</script>
+

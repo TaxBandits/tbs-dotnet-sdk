@@ -14,14 +14,6 @@ namespace Form1099NecSDK.Models.Form1099NecList
 
         [DataMember]
         public string BusinessNm { get; set; }
-        [DataMember]
-        public string FirstNm { get; set; }
-        [DataMember]
-        public string LastNm { get; set; }
-        [DataMember]
-        public string MiddleNm { get; set; }
-        [DataMember]
-        public string Suffix { get; set; }
 
         [DataMember]
         public string EINorSSN { get; set; }
@@ -39,13 +31,5 @@ namespace Form1099NecSDK.Models.Form1099NecList
         public Guid? RecipientId { get; set; }
         [DataMember]
         public string RecipientNm { get; set; }
-        [DataMember]
-        public string FirstNm { get; set; }
-        [DataMember]
-        public string LastNm { get; set; }
-        [DataMember]
-        public string MiddleNm { get; set; }
-        [DataMember]
-        public string Suffix { get; set; }
     }
 }

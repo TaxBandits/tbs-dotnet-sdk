@@ -38,14 +38,6 @@ namespace Form1099KSDK.Models.Form1099KCreate
         //[RegularExpression(@"[0-9a-zA-Z\s-\(\)\&\,\.'s]+$", ErrorMessage = "ERR-TRADENME-01:Enter valid Last Name")]
         public string SecondPayeeNm { get; set; }
         [DataMember]
-        public string FirstNm { get; set; }
-        [DataMember]
-        public string LastNm { get; set; }
-        [DataMember]
-        public string MiddleNm { get; set; }
-        [DataMember]
-        public string Suffix { get; set; }
-        [DataMember]
         public bool? IsForeign { get; set; }
         [DataMember]
         public bool IsForeignNullable { get { return IsForeign ?? false; } set { IsForeign = value; } }

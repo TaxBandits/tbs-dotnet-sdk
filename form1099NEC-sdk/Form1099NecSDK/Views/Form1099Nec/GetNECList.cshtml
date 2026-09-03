@@ -16,17 +16,8 @@
         @if (Model != null && Model.Any(x => x.SubmissionId != null && x.SubmissionId != Guid.Empty))
         {
             <div class="fs-20 text-dark mt-5">
-                <span class="position-relative pb-0 mb-3"></span>
-                <span class="head-1 me-3">
-                    @Model.Select(x => x.BusinessNm != null
-                             ? x.BusinessNm
-                             : x.FirstNm +
-                             (x.MiddleNm != null ? " " + x.MiddleNm : "") +  // Add MiddleNm only if it's not null
-                             (x.LastNm != null ? " " + x.LastNm : "") +      // Always include LastNm
-                             (x.Suffix != null ? " " + x.Suffix : "")        // Add Suffix only if it's not null
-                             ).FirstOrDefault()
-                </span>
-                <span class="text-muted fs-14"></span>  @if (Model?.Select(x => x.EINorSSN).FirstOrDefault().Length > 10)
+                <span class=" position-relative pb-0  mb-3"></span> <span class="head-1 me-3">@Model.Select(x=>x.BusinessNm).FirstOrDefault()</span> <span class="text-muted fs-14">
+                    @if (Model.Select(x => x.EINorSSN).FirstOrDefault().Length > 10)
                     {
                         <span>(SSN : @Model.Select(x=>x.EINorSSN).FirstOrDefault())</span>
                     }
@@ -48,10 +39,6 @@
                         <th class="text-center">Record Id</th>
                         <th class="text-center">Recipient Id</th>
                         <th class="text-center">Recipient Name</th>
-                        <th class="text-center">Fisrt Name</th>
-                        <th class="text-center">Last Name</th>
-                        <th class="text-center">Middle Name</th>
-                        <th class="text-center">Suffix</th>
                         <th class="text-center">Action</th>
                     </tr>
                     <tbody>
@@ -69,17 +56,6 @@
                                 </td>
                                 <td class="text-left">
                                     @NecDetails.Recipient.RecipientNm
-                                </td>
-                                  <td class="text-left">
-                                    @NecDetails.Recipient.FirstNm
-                                </td>
-                                  <td class="text-left">
-                                    @NecDetails.Recipient.LastNm
-                                </td>
-                                <td class="text-left">
-                                    @NecDetails.Recipient.MiddleNm
-                                </td>  <td class="text-left">
-                                    @NecDetails.Recipient.Suffix
                                 </td>
                                 <td class="text-center">
                                     <div class="dropdown action d-md-flex justify-content-between align-items-center px-4">
@@ -120,7 +96,7 @@
             <div class="mt-5">
                 <div class="d-flex align-items-center justify-content-center">
                     <p class="mt-2 mb-0 text-center text-danger fw-600">
-                        There are no 1099-NEC forms created under the business (@Model.Select(x => x.BusinessNm != null ? x.BusinessNm :x.FirstNm+x.MiddleNm+x.LastNm+x.Suffix).FirstOrDefault()). Click "Create Form1099NEC" to create a new Form 1099-NEC.
+                        There are no 1099-NEC forms created under the business (@Model.Select(x=>x.BusinessNm).FirstOrDefault()). Click "Create Form1099NEC" to create a new Form 1099-NEC.
                     </p>
                 </div>
                 <div class="text-center mt-4">
