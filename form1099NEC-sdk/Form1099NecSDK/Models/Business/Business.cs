@@ -26,30 +26,6 @@ namespace Form1099NecSDK.Models.Business
         //[RegularExpression(@"[0-9a-zA-Z\s-\(\)\&\,\.'s]+$", ErrorMessage = "ERR-BNAME1-03:Enter valid Business name")]
 
         public string BusinessNm { get; set; }
-        [DataMember]
-        //[Required(ErrorMessage = "ERR-BNAME1-01:Business Name is required")]
-        //[MaxLength(75, ErrorMessage = "ERR-BNAME1-02:Business Name can only have a maximum of 75 characters ")]
-        //[RegularExpression(@"[0-9a-zA-Z\s-\(\)\&\,\.'s]+$", ErrorMessage = "ERR-BNAME1-03:Enter valid Business name")]
-
-        public string FirstNm { get; set; }
-        [DataMember]
-        //[Required(ErrorMessage = "ERR-BNAME1-01:Business Name is required")]
-        //[MaxLength(75, ErrorMessage = "ERR-BNAME1-02:Business Name can only have a maximum of 75 characters ")]
-        //[RegularExpression(@"[0-9a-zA-Z\s-\(\)\&\,\.'s]+$", ErrorMessage = "ERR-BNAME1-03:Enter valid Business name")]
-
-        public string LastNm { get; set; }
-        [DataMember]
-        //[Required(ErrorMessage = "ERR-BNAME1-01:Business Name is required")]
-        //[MaxLength(75, ErrorMessage = "ERR-BNAME1-02:Business Name can only have a maximum of 75 characters ")]
-        //[RegularExpression(@"[0-9a-zA-Z\s-\(\)\&\,\.'s]+$", ErrorMessage = "ERR-BNAME1-03:Enter valid Business name")]
-
-        public string MiddleNm { get; set; }
-        [DataMember]
-        //[Required(ErrorMessage = "ERR-BNAME1-01:Business Name is required")]
-        //[MaxLength(75, ErrorMessage = "ERR-BNAME1-02:Business Name can only have a maximum of 75 characters ")]
-        //[RegularExpression(@"[0-9a-zA-Z\s-\(\)\&\,\.'s]+$", ErrorMessage = "ERR-BNAME1-03:Enter valid Business name")]
-
-        public string Suffix { get; set; }
 
         /// <summary>
         /// Trade Name (DBA) of the business. This is optional.
@@ -63,7 +39,6 @@ namespace Form1099NecSDK.Models.Business
         /// <summary>
         /// 
         /// </summary>
-        // [JsonIgnore]
         [DataMember]
         public bool IsEIN { get; set; }
 
@@ -168,9 +143,7 @@ namespace Form1099NecSDK.Models.Business
         /// <summary>
         /// </summary>
         [DataMember]
-        public bool? IsForeign { get; set; }
-        [DataMember]
-        public bool IsForeignNullable { get { return IsForeign ?? false; } set { IsForeign = value; } }
+        public bool IsForeign { get; set; }
 
         /// <summary>
         /// </summary>
@@ -181,12 +154,6 @@ namespace Form1099NecSDK.Models.Business
         /// </summary>
         [DataMember]
         public ForeignAddress ForeignAddress { get; set; }
-
-        public string PayerAccNum { get; set; }
-
-        [DataMember]
-        public bool IsGovernmentalUnit { get; set; }
-        public bool IsOnlineAccess { get; set; }
 
     }
 

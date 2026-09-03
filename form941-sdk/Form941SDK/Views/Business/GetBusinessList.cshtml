@@ -19,10 +19,6 @@
             <tr>
                 <th class="text-center">Business Id</th>
                 <th class="text-center">Business Name</th>
-                <th class="text-center">First Name</th>
-                <th class="text-center">Last Name</th>
-                <th class="text-center">Middle Name</th>
-                <th class="text-center">Suffix</th>
                 <th class="text-center">Email</th>
                 <th class="text-center">Action</th>
             </tr>
@@ -37,25 +33,13 @@
                             @BizDetails.BusinessNm
                         </td>
                         <td style="text-align:left">
-                            @BizDetails.FirstNm
-                        </td>
-                        <td style="text-align:left">
-                            @BizDetails.LastNm
-                        </td>
-                        <td style="text-align:left">
-                            @BizDetails.MiddleNm
-                        </td>
-                        <td style="text-align:left">
-                            @BizDetails.Suffix
-                        </td>
-                        <td style="text-align:left">
                             @BizDetails.Email
                         </td>
                         <td>
-                            <button type="button" class="btn btn-primary status-btn btn_smm me-2" onclick="location.href='@Url.Action("CreateForm941View", "Form941", new { businessId = BizDetails.BusinessId,businessName=BizDetails.BusinessNm,firstName=BizDetails.FirstNm,lastName=BizDetails.LastNm,middleName=BizDetails.MiddleNm,suffix=BizDetails.Suffix,tin=BizDetails.EINorSSN})'">
+                            <button type="button" class="btn btn-primary status-btn btn_smm me-2" onclick="location.href='@Url.Action("CreateForm941View", "Form941", new { businessId = BizDetails.BusinessId,businessName=BizDetails.BusinessNm,tin=BizDetails.EINorSSN})'">
                                 Create Form941
                             </button>
-                            <button type="button" class="btn btn-primary status-btn btn_smm me-2" onclick="location.href='@Url.Action("Get941List", "Form941", new { businessId = BizDetails.BusinessId,businessName=BizDetails.BusinessNm,firstName=BizDetails.FirstNm,lastName=BizDetails.LastNm,middleName=BizDetails.MiddleNm,suffix=BizDetails.Suffix,tin=BizDetails.EINorSSN})'">
+                            <button type="button" class="btn btn-primary status-btn btn_smm me-2" onclick="location.href='@Url.Action("Get941List", "Form941", new { businessId = BizDetails.BusinessId,businessName=BizDetails.BusinessNm,tin=BizDetails.EINorSSN})'">
                                 List
                             </button>
                         </td>

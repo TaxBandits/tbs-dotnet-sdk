@@ -7,7 +7,7 @@
 
 <div class="container">
     <div class="col-md-12 text-center">
-        <img src="../images/tbslogo.png" alt="TaxBandits Logo" class="mb-5 logo mt-5">
+        <img src="../images/tbslogo.png" alt="TaxBandits Logo" class="mb-4 logo mt-5">
     </div>
 
     <div class="header text-center mb-3">
@@ -17,10 +17,6 @@
                     <tr>
                         <th>BusinessId</th>
                         <th>Business Name</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Middle Name</th>
-                        <th>Suffix</th>
                         <th>Email</th>
                         <th>Actions</th>
                     </tr>
@@ -32,11 +28,7 @@
                         {
                             <tr>
                                 <td>@BizDetails.BusinessId</td>
-                                <td style="text-align:left;">@BizDetails.BusinessNm</td>  
-                                <td style="text-align:left;">@BizDetails.FirstNm</td>
-                                <td style="text-align:left;">@BizDetails.LastNm</td>
-                                <td style="text-align:left;">@BizDetails.MiddleNm</td>
-                                <td style="text-align:left;">@BizDetails.Suffix</td>
+                                <td style="text-align:left;">@BizDetails.BusinessNm</td>
                                 <td style="text-align:left;">@BizDetails.Email</td>
                                 <td>
                                     <button type="button" onclick="location.href='@Url.Action("GetBusinessDetail", "Business", new { businessId = BizDetails.BusinessId})'">

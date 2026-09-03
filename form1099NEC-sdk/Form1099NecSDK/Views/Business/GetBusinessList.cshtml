@@ -19,10 +19,6 @@
             <tr>
                 <th class="text-center">Business Id</th>
                 <th class="text-center">Business Name</th>
-                 <th class="text-center">First Name</th>
-                <th class="text-center">Last Name</th>
-                 <th class="text-center">Middle Name</th>
-                <th class="text-center">Suffix</th>
                 <th class="text-center">Email</th>
                 <th class="text-center">Action</th>
             </tr>
@@ -36,24 +32,11 @@
                         <td class="text-start">
                             @BizDetails.BusinessNm
                         </td>
-                         <td class="text-start">
-                            @BizDetails.FirstNm
-                        </td>
-                         <td class="text-start">
-                            @BizDetails.LastNm
-                        </td>
-                        <td class="text-start">
-                            @BizDetails.MiddleNm
-                        </td>
-                        <td class="text-start">
-                            @BizDetails.Suffix
-                        </td>
                         <td class="text-start">
                             @BizDetails.Email
                         </td>
                         <td>
-                            <button type="button" class="btn btn-primary status-btn btn_smm me-2" onclick="location.href='@Url.Action("CreateNECView", "Form1099Nec", new {businessId = BizDetails.BusinessId, businessName = BizDetails.BusinessNm != null ? BizDetails.BusinessNm :(BizDetails.FirstNm ?? "") +
-            (BizDetails.MiddleNm != null ? " " + BizDetails.MiddleNm : "") + (BizDetails.LastNm ?? "") + (BizDetails.Suffix != null ? " " + BizDetails.Suffix : ""),tin = BizDetails.EINorSSN })'">
+                            <button type="button" class="btn btn-primary status-btn btn_smm me-2" onclick="location.href='@Url.Action("CreateNECView", "Form1099Nec", new { businessId = BizDetails.BusinessId,businessName=BizDetails.BusinessNm,tin=BizDetails.EINorSSN})'">
                                 Create NEC
                             </button>
                             <button type="button" class="btn btn-primary status-btn btn_smm me-2" onclick="location.href='@Url.Action("GetNECList", "Form1099Nec", new { businessId = BizDetails.BusinessId,businessName=BizDetails.BusinessNm,tin=BizDetails.EINorSSN})'">

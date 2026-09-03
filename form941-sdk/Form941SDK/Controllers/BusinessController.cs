@@ -79,7 +79,9 @@ namespace Form941SDK.Controllers
         public ActionResult GetBusinessList()
         {
             var businessListResponse = new BusinessListResponse();
-            var business = new List <Business>();
+            var business = new List
+            <Business>
+            ();
             var getResponseJSON = string.Empty;
             //Get URLs from App.Config
             string apiUrl = Utility.GetAppSettings(Constants.TBS_PUBLIC_API_BASE_URL);

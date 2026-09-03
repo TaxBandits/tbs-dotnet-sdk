@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BusinessApiSDK")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bf5041534d9362656a5c52a9a10f49a6a3468b72")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6f26ff50774c18e2091ec42692603a20c232479e")]
 [assembly: System.Reflection.AssemblyProductAttribute("BusinessApiSDK")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BusinessApiSDK")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

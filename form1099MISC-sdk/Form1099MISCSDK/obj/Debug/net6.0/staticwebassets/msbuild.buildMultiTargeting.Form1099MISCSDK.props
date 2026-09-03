@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\Form1099MISCSDK.props" />
-</Project>

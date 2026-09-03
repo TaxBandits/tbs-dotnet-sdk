@@ -16,11 +16,11 @@ namespace Form1099MISCSDK.Controllers
     public class Form1099MISCController : Controller
     {
         #region CreateMISC View
-        public ActionResult CreateMISCView(Guid businessId, string businessName, string firstName, string lastName,string middleName, string suffix, string tin)
+        public ActionResult CreateMISCView(Guid businessId, string businessName, string tin)
         {
-            if (businessId != Guid.Empty && ((!string.IsNullOrWhiteSpace(businessName)) || ( (!string.IsNullOrWhiteSpace(firstName)) || (!string.IsNullOrWhiteSpace(lastName)) || (!string.IsNullOrWhiteSpace(middleName)) || (!string.IsNullOrWhiteSpace(suffix))) ) && !string.IsNullOrWhiteSpace(tin))
+            if (businessId != Guid.Empty && !string.IsNullOrWhiteSpace(businessName) && !string.IsNullOrWhiteSpace(tin))
             {
-                Form1099MiscCreateRequest createRequest = new Form1099MiscCreateRequest { ReturnHeader = new APIReturnHeader { Business = new Business { BusinessId = businessId, BusinessNm = businessName, FirstNm = firstName, LastNm = lastName, MiddleNm = middleName, Suffix = suffix, EINorSSN = tin } } };
+                Form1099MiscCreateRequest createRequest = new Form1099MiscCreateRequest { ReturnHeader = new APIReturnHeader { Business = new Business { BusinessId = businessId, BusinessNm = businessName, EINorSSN = tin } } };
                 return View(createRequest);
             }
             return View();
@@ -77,7 +77,7 @@ namespace Form1099MISCSDK.Controllers
 
         #region Form 1099MISC List
         [HttpGet]
-        public ActionResult GetMISCList(Guid businessId, string businessName, string firstName, string lastName, string middleName, string suffix, string tin)
+        public ActionResult GetMISCList(Guid businessId, string businessName, string tin)
         {
             var miscListRepsone = new Form1099MiscResponse();
             var miscListResponseJSON = string.Empty;
@@ -119,10 +119,6 @@ namespace Form1099MISCSDK.Controllers
                         miscListRepsone.Form1099Records = new List<Form1099MiscListResponse>();
                         businessDetails.BusinessId = businessId;
                         businessDetails.BusinessNm = businessName;
-                        businessDetails.FirstNm = firstName;
-                        businessDetails.LastNm = lastName;
-                        businessDetails.MiddleNm = middleName;
-                        businessDetails.Suffix = suffix;
                         businessDetails.EINorSSN = tin;
                         miscListRepsone.Form1099Records.Add(businessDetails);
                     }
@@ -498,7 +494,7 @@ namespace Form1099MISCSDK.Controllers
             if (!string.IsNullOrWhiteSpace(DraftPdfUrl))
             {
                 string fileExtension = DraftPdfUrl.Substring(DraftPdfUrl.LastIndexOf('.') + 1, DraftPdfUrl.Length - (DraftPdfUrl.LastIndexOf('.') + 1));
-                byte[] file = await Utility.GetForm1099MiscPdfS3ByFileName(DraftPdfUrl);
+                byte[] file = Utility.GetForm1099MiscPdfS3ByFileName(DraftPdfUrl);
                 string fileName = Path.GetFileName(DraftPdfUrl);
 
                 if (file != null && file.Length > 0)
@@ -588,7 +584,7 @@ namespace Form1099MISCSDK.Controllers
             if (!string.IsNullOrWhiteSpace(PdfUrl))
             {
                 string fileExtension = PdfUrl.Substring(PdfUrl.LastIndexOf('.') + 1, PdfUrl.Length - (PdfUrl.LastIndexOf('.') + 1));
-                byte[] file = await Utility.GetForm1099MiscPdfS3ByFileName(PdfUrl);
+                byte[] file = Utility.GetForm1099MiscPdfS3ByFileName(PdfUrl);
                 string fileName = Path.GetFileName(PdfUrl);
 
                 if (file != null && file.Length > 0)

@@ -13,15 +13,7 @@
         @if (Model != null && Model.Any(x => x.SubmissionId != null && x.SubmissionId != Guid.Empty))
         {
             <div class="fs-20 text-dark mt-5">
-                @if (!string.IsNullOrWhiteSpace(@Model.Select(x => x.BusinessNm).FirstOrDefault()))
-                {
-                    <span class=" position-relative pb-0  mb-3"></span> <span class="head-1 me-3">@Model.Select(x => x.BusinessNm).FirstOrDefault()</span> <span class="text-muted fs-14"></span>
-                }
-                else
-                {
-                    <span class=" position-relative pb-0  mb-3"></span> <span class="head-1 me-3">@Model.Select(x => x.FirstNm).FirstOrDefault() @Model.Select(x => x.LastNm).FirstOrDefault() @Model.Select(x => x.MiddleNm).FirstOrDefault() @Model.Select(x => x.Suffix).FirstOrDefault()</span> <span class="text-muted fs-14"></span>
-                }
-                
+                <span class=" position-relative pb-0  mb-3"></span> <span class="head-1 me-3">@Model.Select(x=>x.BusinessNm).FirstOrDefault()</span> <span class="text-muted fs-14">
                     @if (Model.Select(x => x.EIN).FirstOrDefault().Length > 10)
                     {
                         <span>(SSN : @Model.Select(x=>x.EIN).FirstOrDefault())</span>
@@ -115,21 +107,12 @@
         {
             <div class="mt-5">
                 <div class="d-flex align-items-center justify-content-center">
-                    @if (!string.IsNullOrWhiteSpace(@Model.Select(x => x.BusinessNm).FirstOrDefault()))
-                    {
-                        <p class="mt-2 mb-0 text-center text-danger fw-600">
-                            There are no 941 forms created under the business (@Model.Select(x => x.BusinessNm).FirstOrDefault()). Click "Create Form941" to create a new Form 941.
-                        </p>
-                    }
-                    else
-                    {
-                        <p class="mt-2 mb-0 text-center text-danger fw-600">
-                            There are no 941 forms created under the business (@Model.Select(x => x.FirstNm).FirstOrDefault() @Model.Select(x => x.LastNm).FirstOrDefault() @Model.Select(x => x.MiddleNm).FirstOrDefault() @Model.Select(x => x.Suffix).FirstOrDefault()). Click "Create Form941" to create a new Form 941.
-                        </p>
-                    }
+                    <p class="mt-2 mb-0 text-center text-danger fw-600">
+                        There are no 941 forms created under the business (@Model.Select(x=>x.BusinessNm).FirstOrDefault()). Click "Create Form941" to create a new Form 941.
+                    </p>
                 </div>
                 <div class="text-center mt-4">
-                    <button class="btn btn_primary" onclick="location.href='@Url.Action("CreateForm941View", "Form941" ,new{businessId=Model.Select(x=>x.BusinessId).FirstOrDefault(),businessName=Model.Select(x=>x.BusinessNm).FirstOrDefault(),firstName = @Model.Select(x => x.FirstNm).FirstOrDefault(), lastName = @Model.Select(x => x.LastNm).FirstOrDefault(), middleName = @Model.Select(x => x.MiddleNm).FirstOrDefault(), suffix = @Model.Select(x => x.Suffix).FirstOrDefault() ,tin=Model.Select(x=>x.EIN).FirstOrDefault()})'"> Create Form941</button>
+                    <button class="btn btn_primary" onclick="location.href='@Url.Action("CreateForm941View", "Form941" ,new{businessId=Model.Select(x=>x.BusinessId).FirstOrDefault(),businessName=Model.Select(x=>x.BusinessNm).FirstOrDefault(),tin=Model.Select(x=>x.EIN).FirstOrDefault()})'"> Create Form941</button>
                 </div>
                 <div>
                     <button class="btn_cancel shadow mb-3" onclick="location.href='@Url.Action("GetBusinessList", "Business")'"><i class="fa fa-arrow-circle-left"></i> Back   </button>

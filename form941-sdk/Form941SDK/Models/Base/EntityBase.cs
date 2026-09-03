@@ -698,29 +698,7 @@ namespace Form941SDK.Models.Base
         }
 
 
-        #region Business  Suffix
-        public enum BusinessSuffix
-        {
-            [Display(Name = "JR")]
-            JR,
-            [Display(Name = "SR")]
-            SR,
-            [Display(Name = "I")]
-            I,
-            [Display(Name = "II")]
-            II,
-            [Display(Name = "III")]
-            III,
-            [Display(Name = "IV")]
-            IV,
-            [Display(Name = "V")]
-            V,
-            [Display(Name = "VI")]
-            VI,
-            [Display(Name = "VII")]
-            VII,
-        }
-        #endregion
+
 
     }
 }

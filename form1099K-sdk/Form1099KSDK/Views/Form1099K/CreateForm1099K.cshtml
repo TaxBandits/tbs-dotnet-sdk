@@ -20,18 +20,7 @@
                 @using (Html.BeginForm("", "", FormMethod.Post, new { id = "1099KReturnForm" }))
                 {
                     <div class="fs-20 text-dark">
-                        @if (!string.IsNullOrWhiteSpace(Model.ReturnHeader.Business.BusinessNm))
-                        {
-                            <span class=" position-relative pb-0  mb-3"></span> <span class="head-1 me-3">@Model.ReturnHeader.Business.BusinessNm</span> <span class="text-muted fs-14"></span>
-                        }
-                        else{
-
-                             <span class=" position-relative pb-0  mb-3"></span> <span class="head-1 me-3">@Model.ReturnHeader.Business.FirstNm</span> <span class="text-muted fs-11"></span>
-                              <span class=" position-relative pb-0  mb-3"></span> <span class="head-1 me-3">@Model.ReturnHeader.Business.MiddleNm</span> <span class="text-muted fs-14"></span>
-                               <span class=" position-relative pb-0  mb-3"></span> <span class="head-1 me-3">@Model.ReturnHeader.Business.LastNm</span> <span class="text-muted fs-14"></span>
-                            <span class=" position-relative pb-0  mb-3"></span> <span class="head-1 me-3">@Model.ReturnHeader.Business.Suffix</span> <span class="text-muted fs-14"></span>
-                        }
-                       
+                        <span class=" position-relative pb-0  mb-3"></span> <span class="head-1 me-3">@Model.ReturnHeader.Business.BusinessNm</span> <span class="text-muted fs-14">
                             @if (Model.ReturnHeader.Business.EINorSSN.Length > 10)
                             {
                                 <span>(SSN : @Model.ReturnHeader.Business.EINorSSN)</span>
@@ -73,19 +62,19 @@
                                     <label class="control-label"><span class="text-danger">*</span>TINType:</label>
                                     <div class="mt-2">
                                         <div class="form-check form-check-inline">
-                                            @Html.RadioButtonFor(model => model.ReturnData[i].Recipient.TINType, "EIN", new { @class = "form-check-input", @id = "einRadio", onclick = "checkRadioElement('EIN')" })
+                                            @Html.RadioButtonFor(model => model.ReturnData[i].Recipient.TINType,"EIN",new { @class = "form-check-input" } )
                                             <label class="form-check-label" for="inlineRadio1">EIN</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            @Html.RadioButtonFor(model => model.ReturnData[i].Recipient.TINType, "SSN", new { @class = "form-check-input", @id = "ssnRadio", onclick = "checkRadioElement('SSN')" })
+                                            @Html.RadioButtonFor(model => model.ReturnData[i].Recipient.TINType,"SSN",new { @class = "form-check-input" })
                                             <label class="form-check-label" for="inlineRadio2">SSN</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            @Html.RadioButtonFor(model => model.ReturnData[i].Recipient.TINType, "ATIN", new { @class = "form-check-input", @id = "tinRadio", onclick = "checkRadioElement('TIN')" })
+                                            @Html.RadioButtonFor(model => model.ReturnData[i].Recipient.TINType,"ATIN",new { @class = "form-check-input" })
                                             <label class="form-check-label" for="inlineRadio3">ATIN</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            @Html.RadioButtonFor(model => model.ReturnData[i].Recipient.TINType, "ITIN", new { @class = "form-check-input", @id = "atinRadio", onclick = "checkRadioElement('ATIN')" })
+                                            @Html.RadioButtonFor(model => model.ReturnData[i].Recipient.TINType,"ITIN",new { @class = "form-check-input" })
                                             <label class="form-check-label" for="inlineRadio4">ITIN</label>
                                         </div>
                                     </div>
@@ -101,41 +90,18 @@
                                 <div class="col-md-6">
                                     <div class="labelName">
                                         <label class="control-label"><span class="text-danger">*</span>First Name:</label>
-                                        <div class="IsEINChecked">
-                                            @Html.TextBoxFor(model => model.ReturnData[i].Recipient.FirstPayeeNm, new { @class = "form-control" })
-                                        </div>
-                                        <div class="IsSSNChecked">
-                                            @Html.TextBoxFor(model => model.ReturnData[i].Recipient.FirstNm, new { @class = "form-control" })
-                                        </div>
+                                        @Html.TextBoxFor(model => model.ReturnData[i].Recipient.FirstPayeeNm, new { @class = "form-control" })
                                     </div>
                                 </div>
                             </div>
                             <div class="row d-flex justify-content-center mb-2">
-                                <div class="col-md-6 IsEINChecked">
-                                    <div class="labelName ">
+                                <div class="col-md-6">
+                                    <div class="labelName">
                                         <label class="control-label"><span class="text-danger"></span>Last Name:</label>
                                         @Html.TextBoxFor(model => model.ReturnData[i].Recipient.SecondPayeeNm, new { @class = "form-control" })
                                     </div>
                                 </div>
-                                <div class="col-md-6 IsSSNChecked">
-                                    <div class="labelName">
-                                        <label class="control-label"><span class="text-danger">*</span>Last Name:</label>
-                                        @Html.TextBoxFor(model => model.ReturnData[i].Recipient.LastNm, new { @class = "form-control" })
-                                    </div>
-                                </div>
-                                <div class="col-md-6 IsSSNChecked">
-                                    <div class="labelName">
-                                        <label class="control-label"><span class="text-danger"></span>Middle Name:</label>
-                                        @Html.TextBoxFor(model => model.ReturnData[i].Recipient.MiddleNm, new { @class = "form-control" })
-                                    </div>
-                                </div>
-                                <div class="col-md-6 IsSSNChecked">
-                                    <div class="labelName">
-                                        <label class="control-label">Suffix:</label>
-                                        @Html.DropDownListFor(model => model.ReturnData[i].Recipient.Suffix, Enum.GetValues(typeof(BusinessSuffix)).Cast<BusinessSuffix>().Select(x => new SelectListItem { Text = Utility.GetEnumDisplayName(x), Value = (x).ToString() }), "Suffix", new { @class = "form-control form-select" })
-                                    </div>
-                                </div>
-                                <div class="col-md-6" >
+                                <div class="col-md-6">
                                     <div class="labelName">
                                         <label class="control-label">Email:</label>
                                         @Html.TextBoxFor(model => model.ReturnData[i].Recipient.Email, new { @class = "form-control" })
@@ -533,12 +499,6 @@
                 var recipientcountry = document.getElementById("recipientcountry");
                 recipientcountry.disabled = document.getElementById("RecipientIsForeign").checked ? false : true;
                 changeFieldNameForRecipient();
-                $(".IsEINChecked").hide();
-                var initialTINType = $('input[name="ReturnData[0].Recipient.TINType"]:checked').val();
-                checkRadioElement(initialTINType);
-                $('input[name="ReturnData[i].Recipient.TINType"]').change(function () {
-                    checkRadioElement(this.value);
-                });
             }
         }
     </script>
@@ -689,18 +649,5 @@
                 $("#btnvalidateform").prop("disabled", false);
             }
         });
-    }
-
-    function checkRadioElement(status) {
-        if (status == "EIN") {
-            if ($("#einRadio").is(":checked")) {
-                $(".IsEINChecked").show();
-                $(".IsSSNChecked").hide();
-            }
-        }
-        else {
-            $(".IsEINChecked").hide();
-            $(".IsSSNChecked").show();
-        }
     }
 </script>

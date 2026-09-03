@@ -36,18 +36,6 @@ namespace Form1099MISCSDK.Models.Form1099MISCCreate
         [DataMember]
         //[RegularExpression(@"[0-9a-zA-Z\s-\(\)\&\,\.'s]+$", ErrorMessage = "ERR-TRADENME-01:Enter valid Last Name")]
         public string SecondPayeeNm { get; set; }
-        [DataMember]
-
-        public string FirstNm { get; set; }
-        [DataMember]
-
-        public string LastNm { get; set; }
-        [DataMember]
-
-        public string MiddleNm { get; set; }
-        [DataMember]
-
-        public string Suffix { get; set; }
 
         [DataMember]
         public bool? IsForeign { get; set; }

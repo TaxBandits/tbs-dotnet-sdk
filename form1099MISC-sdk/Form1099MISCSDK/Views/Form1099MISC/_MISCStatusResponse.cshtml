@@ -120,7 +120,7 @@
             <div class="d-flex justify-content-between align-items-center px-2 bg-light">
                 <div class="fs-6 p-1 fw-bold">Success Records </div>
             </div>
-            @foreach (var item in Model.Form1099Records.SuccessRecords)
+            @foreach (var item in @Model.Form1099Records.SuccessRecords)
             {
                 <div class="d-flex justify-content-between align-items-center p-3  border-bottom-1">
                     <div>
@@ -252,31 +252,6 @@
                                     }
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                }
-                @if (item.StateReturns != null)
-                {
-                    <div class="mb-3 border-top px-4">
-                        <div class="fs-5 mt-2 mb-2">State Return</div>
-                        <div class="mt-4">
-                            <table>
-                                <tr class="fw-600 ">
-                                    <th class="text-center fw-600 bg-dull-blue" width="25%">State Code</th>
-                                    <th class="text-center" width="30%">Status</th>
-                                    <th class="text-center">Status Ts</th>
-                                </tr>
-                                @foreach (var state in item.StateReturns)
-                                {
-                                    <tr>
-                                        <td class="text-center align-top">@state.StateCd</td>
-                                        <td class="text-center align-top">@state.Status</td>
-                                        <td class="text-center align-top">@state.StatusTs</td>
-
-                                    </tr>
-                                }
-
-                            </table>
                         </div>
                     </div>
                 }

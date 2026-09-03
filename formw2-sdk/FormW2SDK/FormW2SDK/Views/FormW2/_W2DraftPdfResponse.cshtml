@@ -1,0 +1,33 @@
+﻿@model FormW2SDK.Models.FormW2RequestDraftPdfUrl.RequestDraftPdfUrlResponse
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalToggleLabel">FormW2 Draft Pdf Response</h5>
+    <button type="button" class="btn-close bg-white rounded-circle border-0 fw-bold position-absolute end-n-10 top-n-13 modal-close button-hide fs-18 fw-500" data-bs-dismiss="modal" aria-label="Close">X</button>
+</div>
+<div class="modal-body">
+    @if (Model.Error != null)
+    {
+        <h2 class="tabel-sub-head">Error</h2>
+        <div class="table-container mb-3">
+            <table>
+                <tbody>
+                    <tr class="fw-600 ">
+                        <th class="text-center fw-600" width="30%">Id</th>
+                        <th class="text-center">Name</th>
+                        <th class="text-center">Message</th>
+                    </tr>
+                    <tr>
+                        <td class="text-center align-top">@Model.Error.Id</td>
+                        <td class="text-center align-top">@Model.Error.Name</td>
+                        <td class="text-center border-radious-bottom-right align-top">@Model.Error.Message</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="table-container mb-3">
+            <iframe src="@Url.Action("FormW2RequestDraftPdfUrl", "FormW2", new { DraftPdfUrl = Model.DraftPdfUrl})" style="width:100%;height:600px"></iframe>
+        </div>
+    }
+</div>

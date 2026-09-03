@@ -1,0 +1,471 @@
+body {
+    font-family: "Avenir LT Std",sans-serif !important;
+}
+
+
+/* Set padding to keep content from hitting the edges */
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+.text-danger {
+    color: #ff5252 !important;
+}
+
+.right-align {
+    text-align: right;
+}
+/* Set width on the form input elements since they're 100% wide by default */
+/* input,
+select,
+textarea {
+    max-width: 280px;
+} */
+
+a {
+    color: #006fd3;
+    font-weight: normal;
+}
+
+
+
+/*p, ul {
+	line-height: 1.6em;
+}*/
+img {
+    border: none;
+}
+
+.status-btn:hover {
+    background-color: #4CAF50; /* Green */
+}
+
+.status-btn {
+    background: transparent !important;
+    color: #fb7310 !important;
+    border: 1px solid #fb7310 !important;
+}
+
+.btn.btn-primary {
+    background: #fb7310;
+    border: 1px solid #da6610;
+}
+
+.btn_primary {
+    background: #F26D21 !important;
+}
+
+
+    .btn.btn_primary, .btn_primary, .btn_primary:hover, .btn_primary:focus {
+        background: #fb7310;
+        padding: 4px 10px;
+        height: auto !important;
+        color: #fff !important;
+        text-align: left;
+        cursor: pointer !important;
+        font: 600 15px 'Open Sans', sans-serif;
+        border-radius: 4px;
+        border: 1px solid #da6610;
+        text-decoration: none;
+    }
+
+
+.btn.btn_lg {
+    padding: 6px 20px !important;
+    font-size: 22px !important;
+    margin-top: 20px;
+}
+
+.btn.btn_md {
+    padding: 6px 10px !important;
+    font-size: 16px !important;
+}
+
+.btn.btn_sm {
+    padding: 3px 10px !important;
+    font-size: 13px !important;
+}
+
+.btn.btn_xs {
+    padding: 3px 10px !important;
+    font-size: 14px !important;
+}
+
+.btn.btn_md i {
+    font-size: 20px;
+    vertical-align: top;
+    padding: 1px 2px 0 0;
+}
+
+
+
+.close {
+    position: absolute;
+    background: transparent url(/images/close.png) no-repeat scroll 0px 0px !important;
+    width: 31px;
+    height: 31px;
+    text-indent: -9999px;
+    z-index: 999;
+    right: 15px;
+    opacity: 1;
+}
+
+    .close:focus {
+        border: none !important;
+    }
+
+.modal-header {
+    border-bottom: 1px solid #c7c7c7;
+    border-radius: 6px 6px 0 0;
+    background: #f3f3f3;
+}
+
+.modal-title {
+    margin: 0px;
+    color: #fb7310 !important;
+    overflow: hidden !important;
+}
+
+.modal-header #form_heading {
+    margin: 0px;
+    padding-bottom: 0;
+    font-weight: 600;
+    font-size: 22px;
+}
+
+.modal-dialog {
+    width: 1000px !important;
+}
+
+
+
+
+
+.modal-header {
+    border-bottom: 1px solid #c7c7c7;
+    border-radius: 6px 6px 0 0;
+    background: #f3f3f3;
+}
+
+.modal-title {
+    margin: 0px;
+    color: #fb7310 !important;
+    overflow: hidden !important;
+}
+
+.modal-header #form_heading {
+    margin: 0px;
+    padding-bottom: 0;
+    font-weight: 600;
+    font-size: 22px;
+}
+
+.modal-dialog {
+    width: 1000px !important;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.mb-15px {
+    margin-bottom: 15px;
+}
+
+form.form {
+    margin-bottom: 20px;
+}
+
+label.control-label {
+    font-weight: 600;
+    padding-bottom: 3px;
+}
+
+.accordion-button:focus {
+    border-color: unset !important;
+    box-shadow: unset !important;
+}
+
+h2.head-h1 {
+    background-color: #e7f1ff;
+    padding: 8px 15px;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.px-12px {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+}
+
+.btn:hover {
+    background-color: #fb7310 !important;
+    border: 1px solid #fb7310 !important;
+    color: white !important;
+    transition: unset !important;
+}
+
+.form-control:focus {
+    border-color: unset !important;
+    box-shadow: unset !important;
+}
+
+.modal-header {
+    border-bottom: 1px solid #ddd;
+    border-radius: 6px 6px 0 0;
+    background: #3097f3;
+    padding: 6px 15px 6px 15px !important;
+}
+
+.modal-title {
+    font-weight: 600;
+    color: #fff !important;
+}
+
+.table-container table {
+    margin-bottom: 0px;
+}
+
+table {
+    border-collapse: separate !important;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+span.error-label {
+    background-color: #e6000d;
+    color: #fff;
+    padding: 1px 5px 2px 5px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+table th {
+    background-color: #f5f5f5 !important;
+    color: #333;
+    padding: 4px;
+    border-right: 1px solid #ddd;
+}
+
+    table th:last-child {
+        border-right: unset !important;
+    }
+
+table td {
+    border: unset !important;
+}
+
+table tr td {
+    border-right: 1px solid #ddd !important;
+    border-bottom: 1px solid #ddd !important;
+    padding: 10px;
+    font-size: 14px;
+}
+
+    table tr td:last-child {
+        border-right: unset !important;
+    }
+
+
+.tabel-sub-head {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.btn-rounded-hover {
+    border: 0;
+    background: transparent;
+}
+
+.modal-close {
+    width: 20px;
+    height: 20px;
+    opacity: 1 !important;
+    color: #333 !important;
+    background-image: unset !important;
+    line-height: 10px;
+    right: 20px;
+    top: 13px
+}
+
+    .modal-close:hover {
+        background: grey !important;
+        color: #fff !important;
+    }
+
+.btn-close:hover {
+    box-shadow: unset !important;
+}
+
+.word-wrap {
+    word-wrap: break-word;
+}
+
+.bg-light-blue {
+    background-color: #f0f8ffb3;
+}
+
+.h-100vh {
+    height: calc(100vh - 0rem);
+}
+
+h2.text-center {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.w-70px {
+    width: 70px;
+}
+
+.grediant-bg {
+    background-color: #e1f0fd;
+    width: 80px;
+    margin: auto;
+    padding: 3px 1px;
+    border-radius: 50px;
+    /* filter: grayscale(100%); */
+}
+
+    .grediant-bg img {
+        padding: 9px;
+    }
+
+img.top-eye-icon {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100px;
+}
+
+.pt-100px {
+    padding-top: 100px;
+}
+
+.table-striped > tbody > tr:nth-of-type(even) > * {
+    background-color: #00000005 !important; /* Set background color for even rows */
+}
+
+
+
+h2.card-head {
+    font-size: 24px;
+}
+
+button.btn_cancel {
+    background: #dcdcdc5e !important;
+    font-weight: 500 !important;
+    color: #333 !important;
+    border: 1px solid #dcdcdc;
+    padding: 1px 10px;
+    border-radius: 4px;
+}
+
+    button.btn_cancel:hover {
+        background-color: #e6e6e6 !important;
+    }
+
+.btn_cancel.btn_smm1 {
+    padding: 3px 10px !important;
+    font-size: 10px !important;
+}
+
+.head-1 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.btn.btn_smm {
+    padding: 3px 10px !important;
+    font-size: 10px !important;
+}
+
+header {
+    box-shadow: 0 0px 6px #adadad;
+}
+
+.heading-bottom-line::after, .heading-bottom-line::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 100%;
+    height: 0.188rem;
+    -webkit-transition: all 0.4s linear;
+    transition: all 0.4s linear;
+}
+
+.heading-bottom-line::before {
+    width: 4.375rem;
+    background: #242424;
+    left: 0;
+}
+
+.heading-bottom-line::after {
+    width: 4.375rem;
+    background: #242424;
+    left: 4.688rem;
+}
+
+.btn-rounded-hover:hover {
+    background-color: #E2E2E2;
+}
+
+.spinner-border {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px;
+    margin-top: -50px;
+    background: url(/link/to/your/image);
+    background-size: 100%;
+}
+
+.offcanvas-header.bg-secondary {
+    --bs-bg-opacity: 1;
+    background-color: #3097f3 !important;
+}
+
+.rounded-circle {
+    border-radius: 50% !important;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    background-color: #f2f2f2 !important;
+}
+
+/* width */
+.dropdown-scroll ::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+.dropdown-scroll ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #f5f5f5;
+    border-radius: 0px;
+}
+
+/* Handle */
+.dropdown-scroll ::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 10px;
+}
+
+    /* Handle on hover */
+    .dropdown-scroll ::-webkit-scrollbar-thumb:hover {
+        background: #ddd;
+    }
+
+.dropdown-menu {
+    transform: translate(70px, 43px) !important;
+}

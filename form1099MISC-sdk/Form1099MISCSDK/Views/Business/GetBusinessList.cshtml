@@ -19,10 +19,6 @@
             <tr>
                 <th class="text-center">Business Id</th>
                 <th class="text-center">Business Name</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Middle Name</th>
-                <th>Suffix</th>
                 <th class="text-center">Email</th>
                 <th class="text-center">Action</th>
             </tr>
@@ -36,19 +32,15 @@
                         <td style="text-align:left">
                             @BizDetails.BusinessNm
                         </td>
-                        <td style="text-align:left;">@BizDetails.FirstNm</td>
-                        <td style="text-align:left;">@BizDetails.LastNm</td>
-                        <td style="text-align:left;">@BizDetails.MiddleNm</td>
-                        <td style="text-align:left;">@BizDetails.Suffix</td>
                         <td style="text-align:left">
                             @BizDetails.Email
                         </td>
                         <td>
-                            <button type="button" class="btn btn-primary status-btn btn_smm me-2" onclick="location.href='@Url.Action("CreateMISCView", "Form1099MISC", new { businessId = BizDetails.BusinessId,businessName=BizDetails.BusinessNm, firstName = BizDetails.FirstNm, lastName = BizDetails.LastNm, middleName = BizDetails.MiddleNm, suffix =BizDetails.Suffix, tin=BizDetails.EINorSSN})'">
-                                Create MISC
+                            <button type="button" class="btn btn-primary status-btn btn_smm me-2" onclick="location.href='@Url.Action("CreateMISCView", "Form1099MISC", new { businessId = BizDetails.BusinessId,businessName=BizDetails.BusinessNm,tin=BizDetails.EINorSSN})'">
+                                Form1099MISC
                             </button>
-                            <button type="button" class="btn btn-primary status-btn btn_smm me-2" onclick="location.href='@Url.Action("GetMISCList", "Form1099MISC", new { businessId = BizDetails.BusinessId,businessName=BizDetails.BusinessNm,firstName = BizDetails.FirstNm, lastName = BizDetails.LastNm, middleName = BizDetails.MiddleNm, suffix =BizDetails.Suffix,tin=BizDetails.EINorSSN})'">
-                                List MISCs
+                            <button type="button" class="btn btn-primary status-btn btn_smm me-2" onclick="location.href='@Url.Action("GetMISCList", "Form1099MISC", new { businessId = BizDetails.BusinessId,businessName=BizDetails.BusinessNm,tin=BizDetails.EINorSSN})'">
+                                List MISC
                             </button>
                         </td>
                     </tr>

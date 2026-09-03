@@ -13,59 +13,17 @@
             <div class="w-75 m-auto mt-4">
                 <div class="border-1 border rounded-2 pb-4">
                     <h2 class="head-h1  px-12px">Create Business Details</h2>
-                    <div id ="einFieldDetails" style="display:block">
-                        <div class="row d-flex justify-content-center mb-15px">
-                            <div class="col-md-5">
-                                <div class="labelName">
-                                    <label class="control-label"><span class="text-danger">*</span>Business Name:</label>
-                                    @Html.TextBoxFor(model => model.BusinessNm, new { @class = "form-control" })
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <div class="labelName">
-                                    <label class="control-label">Payer Ref:</label>
-                                    @Html.TextBoxFor(model => model.PayerRef, new { @class = "form-control" })
-                                </div>
+                    <div class="row d-flex justify-content-center mb-15px">
+                        <div class="col-md-5">
+                            <div class="labelName">
+                                <label class="control-label"><span class="text-danger">*</span>Business Name:</label>
+                                @Html.TextBoxFor(model => model.BusinessNm, new { @class = "form-control" })
                             </div>
                         </div>
-                    </div>
-
-                    <div id="ssnFieldDetails" style="display:none">
-                        <div class="row d-flex justify-content-center mb-15px">
-                            <div class="col-md-5">
-                                <div class="labelName">
-                                    <label class="control-label"><span class="text-danger">*</span>First Name:</label>
-                                    @Html.TextBoxFor(model => model.FirstNm, new { @class = "form-control" })
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <div class="labelName">
-                                    <label class="control-label"><span class="text-danger">*</span>Last Name:</label>
-                                    @Html.TextBoxFor(model => model.LastNm, new { @class = "form-control" })
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row d-flex justify-content-center mb-15px">
-                            <div class="col-md-5">
-                                <div class="labelName">
-                                    <label class="control-label">Middle Name:</label>
-                                    @Html.TextBoxFor(model => model.MiddleNm, new { @class = "form-control" })
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <div class="labelName">
-                                    <label class="control-label">Suffix:</label>
-                                    @Html.DropDownListFor(model => model.Suffix, Enum.GetValues(typeof(BusinessSuffix)).Cast<BusinessSuffix>().Select(x => new SelectListItem { Text = Utility.GetEnumDisplayName(x), Value = (x).ToString() }), "Suffix", new { @class = "form-control form-select" })
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row d-flex justify-content-center mb-15px">
-                            <div class="col-md-5">
-                                <div class="labelName">
-                                    <label class="control-label">Payer Ref:</label>
-                                    @Html.TextBoxFor(model => model.PayerRef, new { @class = "form-control" })
-                                </div>
+                        <div class="col-md-5">
+                            <div class="labelName">
+                                <label class="control-label">Payer Ref:</label>
+                                @Html.TextBoxFor(model => model.PayerRef, new { @class = "form-control" })
                             </div>
                         </div>
                     </div>
@@ -78,7 +36,7 @@
                         </div>
                         <div class="col-md-5">
                             <div class="labelName">
-                                <label class="control-label"><span class="text-danger">*</span>EIN or SSN:</label> <span>@Html.CheckBoxFor(model => model.IsEIN, new { @class = "css-checkbox me-1 form-check-input cursor-pointer", @onchange = "ChangeEIN()" }) Is EIN?</span>
+                                <label class="control-label"><span class="text-danger">*</span>EIN or SSN:</label> <span>@Html.CheckBoxFor(model => model.IsEIN, new { @class = "css-checkbox me-1 form-check-input cursor-pointer"}) Is EIN?</span>
                                 @Html.TextBoxFor(model => model.EINorSSN, new { @class = "form-control" })
                             </div>
                         </div>
@@ -122,8 +80,8 @@
                             <div class="labelName">
                                 <label class="control-label">Business Type:</label>
                                 @Html.DropDownListFor(model => model.BusinessType, Enum.GetValues(typeof(BusinessType)).Cast
-                                         <BusinessType>
-                                         ().Select(x => new SelectListItem { Text = Utility.GetEnumDisplayName(x), Value = (x).ToString() }), "Business Type", new { @class = "form-control form-select", @onchange = "ChangeBusinessMemberType(this);" })
+                            <BusinessType>
+                            ().Select(x => new SelectListItem { Text = Utility.GetEnumDisplayName(x), Value = (x).ToString() }), "Business Type", new { @class = "form-control form-select", @onchange = "ChangeBusinessMemberType(this);" })
                             </div>
                         </div>
                     </div>
@@ -132,8 +90,8 @@
                             <div class="labelName">
                                 <label class="control-label">Business Member Type:</label>
                                 @Html.DropDownListFor(model => model.SigningAuthority.BusinessMemberType, Enum.GetValues(typeof(CorporationBusinessMembers)).Cast
-                                         <CorporationBusinessMembers>
-                                         ().Select(x => new SelectListItem { Text = Utility.GetEnumDisplayName(x), Value = (x).ToString() }), "Business Member Type", new { @id = "businessmemeber", @class = "form-control form-select" })
+                            <CorporationBusinessMembers>
+                            ().Select(x => new SelectListItem { Text = Utility.GetEnumDisplayName(x), Value = (x).ToString() }), "Business Member Type", new { @id = "businessmemeber", @class = "form-control form-select" })
                             </div>
                         </div>
                         <div class="col-md-5">
@@ -154,8 +112,8 @@
                             <div class="labelName">
                                 <label class="control-label">Kind Of Employer:</label>
                                 @Html.DropDownListFor(model => model.KindOfEmployer, Enum.GetValues(typeof(KindOfEmployer)).Cast
-                                         <KindOfEmployer>
-                                         ().Select(x => new SelectListItem { Text = Utility.GetEnumDisplayName(x), Value = (x).ToString() }), "Kind Of Employer", new { @class = "form-control form-select" })
+                            <KindOfEmployer>
+                            ().Select(x => new SelectListItem { Text = Utility.GetEnumDisplayName(x), Value = (x).ToString() }), "Kind Of Employer", new { @class = "form-control form-select" })
                             </div>
                         </div>
                     </div>
@@ -171,9 +129,9 @@
                             <div class="labelName">
                                 <label class="control-label">Kind Of Payer:</label>
                                 @Html.DropDownListFor(model => model.KindOfPayer, Enum.GetValues(typeof(KindOfPayer)).Cast
-                                         <KindOfPayer>
-                                         ().Select(x => new SelectListItem { Text = Utility.GetEnumDisplayName(x), Value = (x).ToString() }), "KindOfPayer", new { @class = "form-control form-select" })
-                                <span>@Html.CheckBoxFor(model => model.IsBusinessTerminated, new { @class = "css-checkbox me-1 form-check-input cursor-pointer" }) Is Business Terminated</span>
+                            <KindOfPayer>
+                            ().Select(x => new SelectListItem { Text = Utility.GetEnumDisplayName(x), Value = (x).ToString() }), "KindOfPayer", new { @class = "form-control form-select" })
+                                <span>@Html.CheckBoxFor(model => model.IsBusinessTerminated, new { @class = "css-checkbox me-1 form-check-input cursor-pointer"}) Is Business Terminated</span>
                             </div>
                         </div>
                         <div class="col-md-5">
@@ -205,8 +163,8 @@
                             <div class="labelName">
                                 <label class="control-label" id="state_lbl"><span class="text-danger">*</span>State:</label>
                                 @Html.DropDownListFor(model => model.USAddress.State, Enum.GetValues(typeof(USStates)).Cast
-                                         <USStates>
-                                         ().Select(x => new SelectListItem { Text = Utility.GetEnumDisplayName(x), Value = (x).ToString() }), "State", new { @id = "State", @class = "form-control form-select" })
+                            <USStates>
+                            ().Select(x => new SelectListItem { Text = Utility.GetEnumDisplayName(x), Value = (x).ToString() }), "State", new { @id = "State",@class = "form-control form-select" })
                                 @Html.TextBoxFor(model => model.ForeignAddress.ProvinceOrStateNm, new { @id = "ProvinceOrStateNm", @class = "form-control", @style = "display:none" })
                             </div>
                         </div>
@@ -222,9 +180,9 @@
                         <div class="col-md-5">
                             <div class="labelName">
                                 <label class="control-label" id="country_lbl" style="display:none;"><span class="text-danger">*</span>Country:</label>
-                                @Html.DropDownListFor(model => model.ForeignAddress.Country, Enum.GetValues(typeof(CountryList)).Cast
-                                         <CountryList>
-                                         ().Select(x => new SelectListItem { Text = Utility.GetEnumDisplayName(x), Value = (x).ToString() }), "Country", new { @id = "country", @class = "form-control form-select", @style = "display:none" })
+                                @Html.DropDownListFor(model => model.ForeignAddress.Country,Enum.GetValues(typeof(CountryList)).Cast
+                            <CountryList>
+                            ().Select(x => new SelectListItem { Text = Utility.GetEnumDisplayName(x), Value = (x).ToString() }), "Country", new { @id = "country", @class = "form-control form-select", @style = "display:none" })
                             </div>
                         </div>
                         <div class="col-md-5">
@@ -256,10 +214,6 @@
         changeFieldName();
 
     }
-
-    window.onload = function () {
-        ChangeEIN();
-    };
 
     function changeFieldName() {
         var UsAddress1 = document.getElementById("USAddress1");
@@ -331,12 +285,6 @@
                 $('#myModal').modal("show");
                 $("#btnCreate > i").hide();
                 $("#btnCreate").prop("disabled", false);
-                $(".modal-close").click(function () {
-                    if ($(data).find('.sucesssrecord').length > 0) {
-                        window.location.href = "/Business/GetBusinessList";
-
-                    }
-                });
             },
             error: function (err) {
                 console.log(err.responseText);
@@ -366,24 +314,6 @@
         else {
             $("#businessmemeber").html("");
             $("#businessmemeber").append(selectOption);
-        }
-    }
-
-    function ChangeEIN() {
-        var ssnFieldDetails = document.getElementById("ssnFieldDetails");
-        var einFieldDetails = document.getElementById("einFieldDetails");
-        if (document.getElementById("IsEIN").checked == true) {
-            einFieldDetails.style.display = "block";
-            ssnFieldDetails.style.display = "none";
-            $('#FirstNm').val('');
-            $('#MiddleNm').val('');
-            $('#Suffix').val('');
-            $('#LastNm').val('');
-        }
-        else {
-            einFieldDetails.style.display = "none";
-            ssnFieldDetails.style.display = "block";
-            $('#BusinessNm').val('');
         }
     }
 </script>

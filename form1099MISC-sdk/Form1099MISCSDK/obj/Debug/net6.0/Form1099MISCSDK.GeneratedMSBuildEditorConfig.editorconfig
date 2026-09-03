@@ -1,103 +1,108 @@
 is_global = true
 build_property.TargetFramework = net6.0
+build_property.TargetFrameworkIdentifier = .NETCoreApp
+build_property.TargetFrameworkVersion = v6.0
 build_property.TargetPlatformMinVersion = 
 build_property.UsingMicrosoftNETSdkWeb = true
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
 build_property.PlatformNeutralAssembly = 
 build_property.EnforceExtendedAnalyzerRules = 
+build_property.EntryPointFilePath = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Form1099MISCSDK
 build_property.RootNamespace = Form1099MISCSDK
-build_property.ProjectDir = D:\Projects\taxbandits-local-sdk\sdk-dotnet\form1099MISC-sdk\Form1099MISCSDK\
+build_property.ProjectDir = d:\Projects\taxbandits-local-sdk\sdk-dotnet\form1099MISC-sdk\Form1099MISCSDK\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Projects\taxbandits-local-sdk\sdk-dotnet\form1099MISC-sdk\Form1099MISCSDK
+build_property.MSBuildProjectDirectory = d:\Projects\taxbandits-local-sdk\sdk-dotnet\form1099MISC-sdk\Form1099MISCSDK
 build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 6.0
+build_property.EnableCodeStyleSeverity = 
 
-[D:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Business/CreateBusiness.cshtml]
+[d:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Business/CreateBusiness.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnVzaW5lc3NcQ3JlYXRlQnVzaW5lc3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Business/GetBusinessList.cshtml]
+[d:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Business/GetBusinessList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnVzaW5lc3NcR2V0QnVzaW5lc3NMaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Business/_BusinessCreateResponse.cshtml]
+[d:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Business/_BusinessCreateResponse.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnVzaW5lc3NcX0J1c2luZXNzQ3JlYXRlUmVzcG9uc2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Form1099MISC/CreateMISCView.cshtml]
+[d:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Form1099MISC/CreateMISCView.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybTEwOTlNSVNDXENyZWF0ZU1JU0NWaWV3LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Form1099MISC/GetMISCList.cshtml]
+[d:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Form1099MISC/GetMISCList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybTEwOTlNSVNDXEdldE1JU0NMaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Form1099MISC/_MISCCreateResponse.cshtml]
+[d:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Form1099MISC/_MISCCreateResponse.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybTEwOTlNSVNDXF9NSVNDQ3JlYXRlUmVzcG9uc2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Form1099MISC/_MISCDeleteResponse.cshtml]
+[d:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Form1099MISC/_MISCDeleteResponse.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybTEwOTlNSVNDXF9NSVNDRGVsZXRlUmVzcG9uc2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Form1099MISC/_MISCDraftPdfResponse.cshtml]
+[d:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Form1099MISC/_MISCDraftPdfResponse.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybTEwOTlNSVNDXF9NSVNDRHJhZnRQZGZSZXNwb25zZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Form1099MISC/_MISCRequestPdfResponse.cshtml]
+[d:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Form1099MISC/_MISCRequestPdfResponse.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybTEwOTlNSVNDXF9NSVNDUmVxdWVzdFBkZlJlc3BvbnNlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Form1099MISC/_MISCStatusResponse.cshtml]
+[d:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Form1099MISC/_MISCStatusResponse.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybTEwOTlNSVNDXF9NSVNDU3RhdHVzUmVzcG9uc2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Form1099MISC/_MISCTransmitResponse.cshtml]
+[d:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Form1099MISC/_MISCTransmitResponse.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybTEwOTlNSVNDXF9NSVNDVHJhbnNtaXRSZXNwb25zZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Form1099MISC/_MISCUpdateResponse.cshtml]
+[d:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Form1099MISC/_MISCUpdateResponse.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybTEwOTlNSVNDXF9NSVNDVXBkYXRlUmVzcG9uc2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Form1099MISC/_MISCValidateFormResponse.cshtml]
+[d:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Form1099MISC/_MISCValidateFormResponse.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybTEwOTlNSVNDXF9NSVNDVmFsaWRhdGVGb3JtUmVzcG9uc2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Form1099MISC/_ViewRequestPdfUrl.cshtml]
+[d:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Form1099MISC/_ViewRequestPdfUrl.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybTEwOTlNSVNDXF9WaWV3UmVxdWVzdFBkZlVybC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Home/Index.cshtml]
+[d:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Home/Privacy.cshtml]
+[d:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Shared/Error.cshtml]
+[d:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Shared/_ValidationScriptsPartial.cshtml]
+[d:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/_ViewImports.cshtml]
+[d:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/_ViewStart.cshtml]
+[d:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Shared/_Layout.cshtml]
+[d:/Projects/taxbandits-local-sdk/sdk-dotnet/form1099MISC-sdk/Form1099MISCSDK/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-2aw4ddkl3o

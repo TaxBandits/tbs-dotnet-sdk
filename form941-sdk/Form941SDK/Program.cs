@@ -23,6 +23,6 @@ app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Business}/{action=GetBusinessList}/{id?}");
 
 app.Run();

@@ -1,0 +1,324 @@
+﻿@model FormW2SDK.Models.Business.Business
+@using FormW2SDK.Models.Utilities
+@using static FormW2SDK.Models.Base.EntityBase;
+@{
+    ViewData["Title"] = "Business";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<div class="col-md-12 col-lg-12">
+    @using (Html.BeginForm("", "", FormMethod.Post, new { id = "BusinessCreateReturnForm", @class = "mt-5" }))
+    {
+        <div class="container">
+            @Html.HiddenFor(model => model.BusinessId)
+            <div class="w-75 m-auto mt-4">
+                <div class="border-1 border rounded-2 pb-4">
+                    <h2 class="head-h1  px-12px">Create Business Details</h2>
+                    <div class="row d-flex justify-content-center mb-15px">
+                        <div class="col-md-5">
+                            <div class="labelName">
+                                <label class="control-label"><span class="text-danger">*</span>Business Name:</label>
+                                @Html.TextBoxFor(model => model.BusinessNm, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="labelName">
+                                <label class="control-label">Payer Ref:</label>
+                                @Html.TextBoxFor(model => model.PayerRef, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center mb-15px">
+                        <div class="col-md-5">
+                            <div class="labelName">
+                                <label class="control-label">Trade Name:</label>
+                                @Html.TextBoxFor(model => model.TradeNm, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="labelName">
+                                <label class="control-label"><span class="text-danger">*</span>EIN or SSN:</label> <span>@Html.CheckBoxFor(model => model.IsEIN, new { @class = "css-checkbox me-1 form-check-input cursor-pointer"}) Is EIN?</span>
+                                @Html.TextBoxFor(model => model.EINorSSN, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center mb-15px">
+                        <div class="col-md-5">
+                            <div class="labelName">
+                                <label class="control-label"><span class="text-danger">*</span>Email Address:</label>
+                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="labelName">
+                                <label class="control-label">Contact Name:</label>
+                                @Html.TextBoxFor(model => model.ContactNm, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center mb-15px">
+                        <div class="col-md-5">
+                            <div class="labelName">
+                                <label class="control-label"><span class="text-danger">*</span>Phone Number:</label>
+                                @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="labelName">
+                                <label class="control-label">Phone Extn:</label>
+                                @Html.TextBoxFor(model => model.PhoneExtn, new { @class = "form-control"})
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center mb-15px">
+                        <div class="col-md-5">
+                            <div class="labelName">
+                                <label class="control-label">Fax:</label>
+                                @Html.TextBoxFor(model => model.Fax, new { @class = "form-control"})
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="labelName">
+                                <label class="control-label">Business Type:</label>
+                                @Html.DropDownListFor(model => model.BusinessType, Enum.GetValues(typeof(BusinessType)).Cast
+                            <BusinessType>
+                            ().Select(x => new SelectListItem { Text = Utility.GetEnumDisplayName(x), Value = (x).ToString() }), "Business Type", new { @class = "form-control form-select", @onchange = "ChangeBusinessMemberType(this);" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center mb-15px">
+                        <div class="col-md-5">
+                            <div class="labelName">
+                                <label class="control-label">Business Member Type:</label>
+                                @Html.DropDownListFor(model => model.SigningAuthority.BusinessMemberType, Enum.GetValues(typeof(CorporationBusinessMembers)).Cast
+                            <CorporationBusinessMembers>
+                            ().Select(x => new SelectListItem { Text = Utility.GetEnumDisplayName(x), Value = (x).ToString() }), "Business Member Type", new { @id = "businessmemeber", @class = "form-control form-select" })
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="labelName">
+                                <label class="control-label">Signing Authority Name:</label>
+                                @Html.TextBoxFor(model => model.SigningAuthority.Name, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center mb-15px">
+                        <div class="col-md-5">
+                            <div class="labelName">
+                                <label class="control-label">Signing Authority Phone:</label>
+                                @Html.TextBoxFor(model => model.SigningAuthority.Phone, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="labelName">
+                                <label class="control-label">Kind Of Employer:</label>
+                                @Html.DropDownListFor(model => model.KindOfEmployer, Enum.GetValues(typeof(KindOfEmployer)).Cast
+                            <KindOfEmployer>
+                            ().Select(x => new SelectListItem { Text = Utility.GetEnumDisplayName(x), Value = (x).ToString() }), "Kind Of Employer", new { @class = "form-control form-select" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center mb-15px">
+                        <div class="col-md-5">
+                        </div>
+                        <div class="col-md-5">
+                            <span>@Html.CheckBoxFor(model => model.IsForeign, new { onchange = "enableOrDisableFields()", @class = "css-checkbox me-1 form-check-input cursor-pointer", id = "IsForeign" }) Is Foreign?</span>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center mb-15px">
+                        <div class="col-md-5">
+                            <div class="labelName">
+                                <label class="control-label">Kind Of Payer:</label>
+                                @Html.DropDownListFor(model => model.KindOfPayer, Enum.GetValues(typeof(KindOfPayer)).Cast
+                            <KindOfPayer>
+                            ().Select(x => new SelectListItem { Text = Utility.GetEnumDisplayName(x), Value = (x).ToString() }), "KindOfPayer", new { @class = "form-control form-select" })
+                                <span>@Html.CheckBoxFor(model => model.IsBusinessTerminated, new { @class = "css-checkbox me-1 form-check-input cursor-pointer"}) Is Business Terminated</span>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="labelName">
+                                <label class="control-label"><span class="text-danger">*</span>Address 1:</label>
+                                @Html.TextBoxFor(model => model.USAddress.Address1, new { @id = "USAddress1", @class = "form-control" })
+                                @Html.TextBoxFor(model => model.ForeignAddress.Address1, new { @id = "ForeignAddress1", @style = "display:none", @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center mb-15px">
+                        <div class="col-md-5">
+                            <div class="labelName">
+                                <label class="control-label">Address 2:</label>
+                                @Html.TextBoxFor(model => model.USAddress.Address2, new { @id = "USAddress2", @class = "form-control" })
+                                @Html.TextBoxFor(model => model.ForeignAddress.Address2, new { @id = "ForeignAddress2", @style = "display:none", @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="labelName">
+                                <label class="control-label" id="City_lbl"><span class="text-danger">*</span>City:</label>
+                                @Html.TextBoxFor(model => model.USAddress.City, new { @id = "UsaddressCity", @class = "form-control" })
+                                @Html.TextBoxFor(model => model.ForeignAddress.City, new { @id = "ForeginAddressCity", @class = "form-control", @style = "display:none" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center mb-15px">
+                        <div class="col-md-5">
+                            <div class="labelName">
+                                <label class="control-label" id="state_lbl"><span class="text-danger">*</span>State:</label>
+                                @Html.DropDownListFor(model => model.USAddress.State, Enum.GetValues(typeof(USStates)).Cast
+                            <USStates>
+                            ().Select(x => new SelectListItem { Text = Utility.GetEnumDisplayName(x), Value = (x).ToString() }), "State", new { @id = "State",@class = "form-control form-select" })
+                                @Html.TextBoxFor(model => model.ForeignAddress.ProvinceOrStateNm, new { @id = "ProvinceOrStateNm", @class = "form-control", @style = "display:none" })
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="labelName">
+                                <label class="control-label" id="zip_code_lbl"><span class="text-danger">*</span>Zip Code:</label>
+                                @Html.TextBoxFor(model => model.USAddress.ZipCd, new { @id = "ZipCd", @class = "form-control"})
+                                @Html.TextBoxFor(model => model.ForeignAddress.PostalCd, new { @id = "PostalCd", @class = "form-control", @style = "display:none" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center mb-15px">
+                        <div class="col-md-5">
+                            <div class="labelName">
+                                <label class="control-label" id="country_lbl" style="display:none;"><span class="text-danger">*</span>Country:</label>
+                                @Html.DropDownListFor(model => model.ForeignAddress.Country,Enum.GetValues(typeof(CountryList)).Cast
+                            <CountryList>
+                            ().Select(x => new SelectListItem { Text = Utility.GetEnumDisplayName(x), Value = (x).ToString() }), "Country", new { @id = "country", @class = "form-control form-select", @style = "display:none" })
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                        </div>
+                    </div>
+                    <div class='d-flex align-items-center justify-content-between mt-5 px-5'>
+                        <div>
+                            <button type="button" class="btn_cancel mb-3 float-left" onclick="location.href='@Url.Action("GetBusinessList", "Business")'" id="btnback">
+                                <i class="fa fa-arrow-circle-left"></i>
+                                Back
+                            </button>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn_primary shadow btn_md float-right" onclick="CreateBusiness()" id="btnCreate">
+                                Create Business
+                                <i class="fa fa-spinner fa-spin" aria-hidden="true" id="CreateSpinner" style="display:none"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<script type="text/javascript">
+    function enableOrDisableFields() {
+        var country = document.getElementById("country");
+        country.disabled = document.getElementById("IsForeign").checked ? false : true;
+        changeFieldName();
+
+    }
+
+    function changeFieldName() {
+        var UsAddress1 = document.getElementById("USAddress1");
+        var USAddress2 = document.getElementById("USAddress2");
+        var ForeignAddress1 = document.getElementById("ForeignAddress1");
+        var ForeignAddress2 = document.getElementById("ForeignAddress2");
+        var ForeginAddressCity = document.getElementById("ForeginAddressCity");
+        var zipCodeLbl = document.getElementById("zip_code_lbl");
+        var zipCodeFld = document.getElementById("ZipCd");
+        var ForeignPostalCde = document.getElementById("PostalCd");
+        var stateLbl = document.getElementById("state_lbl");
+        var stateFld = document.getElementById("ProvinceOrStateNm");
+        var USAdressCity = document.getElementById("UsaddressCity");
+        var ForeginAdressCity = document.getElementById("ForeginAddressCity");
+
+        var statedropdown = document.getElementById("State");
+        var CountryLbl = document.getElementById("country_lbl");
+        var CountryFld = document.getElementById("country");
+
+        if (document.getElementById("IsForeign").checked == true) {
+            UsAddress1.style.display = "none";
+            USAddress2.style.display = "none";
+            ForeignAddress1.style.display = "block";
+            ForeignAddress2.style.display = "block";
+            zipCodeLbl.innerHTML = "<span class='text-danger'>*</span>" + "Postal Code";
+            zipCodeFld.style.display = "none";
+            ForeignPostalCde.style.display = "block";
+            stateLbl.innerHTML = "<span class='text-danger'>*</span>" + "ProvinceOrStateNm";
+            statedropdown.style.display = "none";
+            stateFld.style.display = "block";
+            ForeginAddressCity.style.display = "block";
+            CountryLbl.style.display = "block";
+            CountryFld.style.display = "block";
+            USAdressCity.style.display = "none";
+            ForeginAdressCity.style.display = "block";
+
+        } else {
+            UsAddress1.style.display = "block";
+            USAddress2.style.display = "block";
+            ForeignAddress1.style.display = "none";
+            ForeignAddress2.style.display = "none";
+            ForeginAddressCity.style.display = "none";
+            zipCodeLbl.innerHTML = "<span class='text-danger'>*</span>" + "Zip Code";
+            zipCodeFld.style.display = "block";
+            ForeignPostalCde.style.display = "none";
+            stateLbl.innerHTML = "<span class='text-danger'>*</span>" + "State";
+            stateFld.style.display = "none";
+            statedropdown.style.display = "block";
+            CountryLbl.style.display = "none";
+            CountryFld.style.display = "none";
+            USAdressCity.style.display = "block";
+            ForeginAdressCity.style.display = "none";
+        }
+
+
+    }
+
+    function CreateBusiness() {
+        var formdata = $("#BusinessCreateReturnForm").serialize();
+        $("#btnCreate > i").show();
+        $("#btnCreate").prop("disabled", true);
+        $.ajax({
+            url: "/Business/CreateBusiness/",
+            cache: false,
+            type: 'POST',
+            data: formdata,
+            success: function (data) {
+                $('#ModelBody').html(data);
+                $('#myModal').modal("show");
+                $("#btnCreate > i").hide();
+                $("#btnCreate").prop("disabled", false);
+            },
+            error: function (err) {
+                console.log(err.responseText);
+                $("#btnCreate > i").hide();
+                $("#btnCreate").prop("disabled", false);
+            }
+        });
+    }
+
+    function ChangeBusinessMemberType(obj) {
+
+        var selectOption = "<option>Business Member Type</option>";
+
+        if ($(obj).val() != "") {
+            var businessType = $(obj).val();
+
+            $.getJSON("/Business/BusinessMembersType/", { SelectedBusinessTypeVal: businessType }, function (data) {
+                if (data != null && data != '' && data != undefined) {
+                    $("#businessmemeber").html("");
+                    $("#businessmemeber").append(selectOption);
+                    for (var i = 0; i < data.data.length; i++) {
+                        $("#businessmemeber").append($('<option></option>').val(data.data[i].value).html(data.data[i].text));
+                    }
+                }
+            });
+        }
+        else {
+            $("#businessmemeber").html("");
+            $("#businessmemeber").append(selectOption);
+        }
+    }
+</script>

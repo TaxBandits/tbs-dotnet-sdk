@@ -13,15 +13,6 @@ namespace Form1099KSDK.Models.Form1099KList
         [DataMember]
         public string BusinessNm { get; set; }
         [DataMember]
-        public string FirstNm { get; set; }
-        [DataMember]
-        public string LastNm { get; set; }
-        [DataMember]
-        public string MiddleNm { get; set; }
-        [DataMember]
-        public string Suffix { get; set; }
-
-        [DataMember]
         public string EINorSSN { get; set; }
         [DataMember]
         public KRecipientRecord Recipient { get; set; }
@@ -34,14 +25,6 @@ namespace Form1099KSDK.Models.Form1099KList
         [DataMember]
         public Guid? RecipientId { get; set; }
         [DataMember]
-        public string RecipientNm { get; set; }
-        [DataMember]
-        public string FirstNm { get; set; }
-        [DataMember]
-        public string LastNm { get; set; }
-        [DataMember]
-        public string MiddleNm { get; set; }
-        [DataMember]
-        public string Suffix { get; set; }
+        public string RecipientNm { get; set; }   
     }
 }

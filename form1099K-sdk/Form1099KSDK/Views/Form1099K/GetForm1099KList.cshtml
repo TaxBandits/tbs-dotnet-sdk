@@ -19,30 +19,11 @@
                 <span class=" position-relative pb-0  mb-3"></span>
                 @foreach (var bizValues in Model.Form1099Records)
                 {
-                    if (i == 0 && !string.IsNullOrWhiteSpace(bizValues.EINorSSN))
+                    if (i == 0 && !string.IsNullOrWhiteSpace(bizValues.BusinessNm) && !string.IsNullOrWhiteSpace(bizValues.EINorSSN))
                     {
-                        if (!string.IsNullOrWhiteSpace(bizValues.BusinessNm))
-                        {
-                            <span class="head-1 me-3">
-                                @bizValues.BusinessNm
-                            </span>
-                        }
-                        else
-                        {
-                            <span class="head-1 me-3">
-                                @bizValues.FirstNm
-                            </span>
-                            <span class="head-1 me-3">
-                                @bizValues.LastNm
-                            </span>
-                            <span class="head-1 me-3">
-                                @bizValues.MiddleNm
-                            </span>
-                            <span class="head-1 me-3">
-                                @bizValues.Suffix
-                            </span>
-                        }
-
+                        <span class="head-1 me-3">
+                            @bizValues.BusinessNm
+                        </span>
                         <span class="text-muted fs-14">
                             @if (bizValues.EINorSSN.Length > 10)
                             {
@@ -70,11 +51,6 @@
                         <th class="text-center">Record Id</th>
                         <th class="text-center">Recipient Id</th>
                         <th class="text-center">Recipient Name</th>
-                        <th class="text-center">First Name</th>
-                        <th class="text-center">Last Name</th>
-                        <th class="text-center">Middle Name</th>
-                        <th class="text-center">Suffix</th>
-
                         <th class="text-center">Action</th>
                     </tr>
                     <tbody>
@@ -93,18 +69,6 @@
                                 </td>
                                 <td class="text-left">
                                     @items.Recipient.RecipientNm
-                                </td>
-                                <td class="text-left">
-                                    @items.Recipient.FirstNm
-                                </td>
-                                <td class="text-left">
-                                    @items.Recipient.LastNm
-                                </td>
-                                <td class="text-left">
-                                    @items.Recipient.MiddleNm
-                                </td>
-                                <td class="text-left">
-                                    @items.Recipient.Suffix
                                 </td>
                                 <td class="text-center">
                                     <div class="dropdown action d-md-flex justify-content-between align-items-center px-4">
@@ -145,32 +109,25 @@
         {
             @foreach (var bizValues in Model.Form1099Records)
             {
-                <div class="mt-5">
-                    <div class="d-flex align-items-center justify-content-center">
-                        @if (!string.IsNullOrWhiteSpace(@Model.Form1099Records.Select(x => x.BusinessNm).FirstOrDefault()))
-                        {
-                            <p class="mt-2 mb-0 text-center text-danger fw-600">
-                                There are no 1099-MISC forms created under the business (@Model.Form1099Records.Select(x => x.BusinessNm).FirstOrDefault()). Click "Create Form1099K" to create a new Form 1099-K.
-                            </p>
-                        }
-                        else
-                        {
-                            <p class="mt-2 mb-0 text-center text-danger fw-600">
-                                There are no 1099-MISC forms created under the business (@Model.Form1099Records.Select(x => x.FirstNm).FirstOrDefault() @Model.Form1099Records.Select(x => x.LastNm).FirstOrDefault() @Model.Form1099Records.Select(x => x.MiddleNm).FirstOrDefault() @Model.Form1099Records.Select(x => x.Suffix).FirstOrDefault()). Click "Create Form1099K" to create a new Form 1099-K.
-                            </p>
-                        }
+                if (i == 0 && !string.IsNullOrWhiteSpace(bizValues.BusinessNm) && !string.IsNullOrWhiteSpace(bizValues.EINorSSN))
+                {
+                    i++;
 
-                        
+                    <div class="mt-5">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <p class="mt-2 mb-0 text-center text-danger fw-600">
+                                There are no 1099-K forms created under the business (@bizValues.BusinessNm). Click "Create Form1099K" to create a new Form 1099-K.
+                            </p>
+                        </div>
+                        <div class="text-center mt-4">
+                            <button class="btn btn_primary" onclick="location.href='@Url.Action("CreateForm1099K", "Form1099K" ,new{businessId=bizValues.BusinessId,businessName=bizValues.BusinessNm,tin=bizValues.EINorSSN})'"> Create Form1099K</button>
+                        </div>
+                        <div>
+                            <button class="btn_cancel shadow mb-3" onclick="location.href='@Url.Action("GetBusinessList", "Business")'"><i class="fa fa-arrow-circle-left"></i> Back   </button>
+                        </div>
                     </div>
-                    <div class="text-center mt-4">
-                        <button class="btn btn_primary" onclick="location.href='@Url.Action("CreateForm1099K", "Form1099K" ,new{businessId=Model.Form1099Records.Select(x=>x.BusinessId).FirstOrDefault(),businessName=Model.Form1099Records.Select(x=>x.BusinessNm).FirstOrDefault(), firstName = @Model.Form1099Records.Select(x => x.FirstNm).FirstOrDefault(), lastName = @Model.Form1099Records.Select(x => x.LastNm).FirstOrDefault(), middleName = @Model.Form1099Records.Select(x => x.MiddleNm).FirstOrDefault(), suffix = @Model.Form1099Records.Select(x => x.Suffix).FirstOrDefault(), tin=Model.Form1099Records.Select(x=>x.EINorSSN).FirstOrDefault()})'">Create Form1099K</button>
-                    </div>
-                    <div>
-                        <button class="btn_cancel shadow mb-3" onclick="location.href='@Url.Action("GetBusinessList", "Business")'"><i class="fa fa-arrow-circle-left"></i> Back   </button>
-                    </div>
-                </div>
+                }
             }
-
         }
     </div>
     <div class="spinner-border" role="status" style="display:none">

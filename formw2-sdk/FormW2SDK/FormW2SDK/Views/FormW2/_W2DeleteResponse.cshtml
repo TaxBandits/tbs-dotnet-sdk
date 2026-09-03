@@ -1,0 +1,113 @@
+﻿@model FormW2SDK.Models.FormW2Delete.FormW2DeleteResponse
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalToggleLabel">FormW2 Delete Response</h5>
+    <button type="button" class="btn-close bg-white rounded-circle border-0 fw-bold position-absolute end-n-10 top-n-13 modal-close button-hide fs-18 fw-500" data-bs-dismiss="modal" aria-label="Close">X</button>
+</div>
+<div class="modal-body">
+    <div class="table-container mt-2 mb-4">
+        <table>
+            <tbody>
+                <tr class="fw-600 ">
+                    <th class="text-center fw-600 bg-dull-blue" width="25%">Status Code</th>
+                    <th class="text-center" width="30%">Status Name</th>
+                    <th class="text-center">Status Message</th>
+                </tr>
+                <tr>
+                    <td class="text-center align-top">
+                        @Model.StatusCode
+                    </td>
+                    <td class="text-center align-top">
+                        @Model.StatusName
+                    </td>
+                    @if (Model.StatusCode != 200)
+                    {
+                        <td class="text-center border-radious-bottom-right align-top text-danger">
+                            @Model.StatusMessage
+                        </td>
+                    }
+                    else
+                    {
+                        <td class="text-center border-radious-bottom-right align-top text-success">
+                            @Model.StatusMessage
+                        </td>
+                    }
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    @if (Model != null)
+    {
+        if (Model.Errors != null && Model.Errors.Count > 0)
+        {
+            <h2 class="tabel-sub-head">Error</h2>
+            <div class="table-container mb-3">
+                <table>
+                    <tbody>
+                        <tr class="fw-600 ">
+                            <th class="text-center fw-600" width="30%">Id</th>
+                            <th class="text-center">Name</th>
+                            <th class="text-center">Message</th>
+                        </tr>
+                        @foreach (var item in Model.Errors)
+                        {
+                            <tr>
+                                <td class="text-center align-top">@item.Id</td>
+                                <td class="text-center align-top">@item.Name</td>
+                                <td class="text-center border-radious-bottom-right align-top">@item.Message</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else if (Model.FormW2Records.ErrorRecords != null && Model.FormW2Records.ErrorRecords.Count > 0)
+        {
+            <h2 class="tabel-sub-head">Error Records</h2>
+            <div class="table-container mb-3">
+                <table>
+                    <tbody>
+                        <tr class="fw-600 ">
+                            <th class="text-center fw-600" width="30%">Id</th>
+                            <th class="text-center">Name</th>
+                            <th class="text-center">Message</th>
+                        </tr>
+                        @foreach (var item in Model.FormW2Records.ErrorRecords)
+                        {
+                            @foreach (var error in item.Errors)
+                            {
+                                <tr>
+                                    <td class="text-center border-radious-bottom-right align-top">@error.Id</td>
+                                    <td class="text-center border-radious-bottom-right align-top">@error.Name</td>
+                                    <td class="text-center border-radious-bottom-right align-top">@error.Message</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    }
+    @if (Model != null && Model.StatusCode == 200)
+    {
+        <h2 class="tabel-sub-head">Success Records</h2>
+        <div class="table-container mb-3">
+            <table>
+                <tbody>
+                    <tr class="fw-600 ">
+                        <th class="text-center fw-600" width="30%">Submission Id</th>
+                        <th class="text-center">Sequence Id</th>
+                        <th class="text-center">Record Id</th>
+                    </tr>
+                    <tr>
+                        <td class="text-center align-top">@Model.SubmissionId</td>
+                        @foreach (var item in Model.FormW2Records.SuccessRecords)
+                        {
+                            <td class="text-center border-radious-bottom-right align-top">@item.SequenceId</td>
+                            <td class="text-center border-radious-bottom-right align-top">@item.RecordId</td>
+                        }
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

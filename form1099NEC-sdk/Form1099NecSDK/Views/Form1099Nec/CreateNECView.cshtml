@@ -25,25 +25,14 @@
                 @using (Html.BeginForm("", "", FormMethod.Post, new { id = "NECReturnForm" }))
                 {
                     <div class="fs-20 text-dark">
-                      <span class="position-relative pb-0 mb-3"></span>
-<span class="head-1 me-3">
-    @(
-        Model?.ReturnHeader.Business.BusinessNm != null 
-        ? Model?.ReturnHeader.Business.BusinessNm 
-        : Model?.ReturnHeader.Business.FirstNm + 
-          (Model?.ReturnHeader.Business.MiddleNm != null ? " " + Model?.ReturnHeader.Business.MiddleNm : "") +  // Add MiddleNm only if it's not null
-          " " + Model?.ReturnHeader.Business.LastNm +   // Always include LastNm
-          (Model?.ReturnHeader.Business.Suffix != null ? " " + Model?.ReturnHeader.Business.Suffix : "")  // Add Suffix only if it's not null
-    )
-</span>
-<span class="text-muted fs-14"></span> 
-                           @if (Model?.ReturnHeader.Business.EINorSSN.Length > 10)
+                        <span class=" position-relative pb-0  mb-3"></span> <span class="head-1 me-3">@Model.ReturnHeader.Business.BusinessNm</span> <span class="text-muted fs-14">
+                            @if (Model.ReturnHeader.Business.EINorSSN.Length > 10)
                             {
                                 <span>(SSN : @Model.ReturnHeader.Business.EINorSSN)</span>
                             }
                             else
                             {
-                                <span>(EIN : @Model?.ReturnHeader.Business.EINorSSN)</span>
+                                <span>(EIN : @Model.ReturnHeader.Business.EINorSSN)</span>
                             }
                     </div>
                     <div class="col-md-6 mt-3">
@@ -67,7 +56,7 @@
                             <h2 class="sub-head text-left mt-4 mb-3 ">
                                 Recipient Details
                             </h2>
-                            <div class="row m-0 mt-3 d-flex justify-content-center mb-15px">
+                            <div class="row d-flex justify-content-center mb-15px">
                                 <div class="col-md-6">
                                     <div class="labelName">
                                         <label class="control-label"><span class="text-danger">*</span>SequenceId:</label>
@@ -78,11 +67,11 @@
                                     <label class="control-label"><span class="text-danger">*</span>TIN Type:</label>
                                     <div class="mt-2">
                                         <div class="form-check form-check-inline">
-                                            @Html.RadioButtonFor(model => model.ReturnData[i].Recipient.TINType,"EIN",new { @class = "form-check-input", @onclick = "ChangeEIN()" } )
+                                            @Html.RadioButtonFor(model => model.ReturnData[i].Recipient.TINType,"EIN",new { @class = "form-check-input" } )
                                             <label class="form-check-label" for="inlineRadio1">EIN</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            @Html.RadioButtonFor(model => model.ReturnData[i].Recipient.TINType,"SSN",new { @class = "form-check-input", @onclick = "ChangeEIN()",@id="Isssn" })
+                                            @Html.RadioButtonFor(model => model.ReturnData[i].Recipient.TINType,"SSN",new { @class = "form-check-input" })
                                             <label class="form-check-label" for="inlineRadio2">SSN</label>
                                         </div>
                                         <div class="form-check form-check-inline">
@@ -96,70 +85,35 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="ssnFieldDetails" style="display:none">
-                                <div class="row m-0 mt-3 d-flex justify-content-center mb-15px">
-                                <div class="col-md-6">
-                                    <div class="labelName">
-                                        <label class="control-label"><span class="text-danger"></span><span class="text-danger">*</span>First Name:</label>
-                                        @Html.TextBoxFor(model => model.ReturnData[i].Recipient.FirstNm, new { @class = "form-control" })
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="labelName">
-                                        <label class="control-label"><span class="text-danger"></span>Middle Name:</label>
-                                        @Html.TextBoxFor(model => model.ReturnData[i].Recipient.MiddleNm, new { @class = "form-control"})
-                                    </div>
-                                </div>
-                            </div>
-                             <div class="row m-0 mt-3 d-flex justify-content-center mb-15px">
-                                <div class="col-md-6">
-                                    <div class="labelName">
-                                        <label class="control-label"><span class="text-danger"></span><span class="text-danger">*</span>Last Name:</label>
-                                        @Html.TextBoxFor(model => model.ReturnData[i].Recipient.LastNm, new { @class = "form-control" })
-                                    </div>
-                                </div>
-                              <div class="col-md-6">
-                                <div class="labelName">
-                                    <label class="control-label">Suffix:</label>
-                                    @Html.DropDownListFor(model => model.ReturnData[i].Recipient.Suffix, Enum.GetValues(typeof(Utility.BusinessSuffix)).Cast<Utility.BusinessSuffix>().Select(x => new SelectListItem { Text = Utility.GetEnumDisplayName(x), Value = (x).ToString() }), "Suffix", new { @class = "form-control form-select" })
-                                </div>
-                            </div>
-                            </div>
-                            </div>
-                            <div id="einFieldDetails" style="display:none">
-                            <div class="row m-0 mt-3 d-flex justify-content-center mb-2">
-                                 <div class="col-md-6">
-                                    <div class="labelName">
-                                        <label class="control-label"><span class="text-danger">*</span>FirstPayee Name:</label>
-                                        @Html.TextBoxFor(model => model.ReturnData[i].Recipient.FirstPayeeNm, new { @class = "form-control" })
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="labelName">
-                                        <label class="control-label"><span class="text-danger"></span>SecondPayee Name:</label>
-                                        @Html.TextBoxFor(model => model.ReturnData[i].Recipient.SecondPayeeNm, new { @class = "form-control" })
-                                    </div>
-                                </div>
-                               
-                            </div>
-                            </div>
-                            <div class="row m-0 mt-3 d-flex justify-content-center mb-15px">
+                            <div class="row d-flex justify-content-center mb-15px">
                                 <div class="col-md-6">
                                     <div class="labelName">
                                         <label class="control-label"><span class="text-danger">*</span>TIN:</label>
                                         @Html.TextBoxFor(model => model.ReturnData[i].Recipient.TIN, new { @class = "form-control"})
                                     </div>
                                 </div>
-                                 <div class="col-md-6">
+                                <div class="col-md-6">
+                                    <div class="labelName">
+                                        <label class="control-label"><span class="text-danger">*</span>First Name:</label>
+                                        @Html.TextBoxFor(model => model.ReturnData[i].Recipient.FirstPayeeNm, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row d-flex justify-content-center mb-2">
+                                <div class="col-md-6">
+                                    <div class="labelName">
+                                        <label class="control-label"><span class="text-danger"></span>Last Name:</label>
+                                        @Html.TextBoxFor(model => model.ReturnData[i].Recipient.SecondPayeeNm, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
                                     <div class="labelName">
                                         <label class="control-label">Email:</label>
                                         @Html.TextBoxFor(model => model.ReturnData[i].Recipient.Email, new { @class = "form-control" })
                                     </div>
                                 </div>
-                               
                             </div>
-                            
-                            <div class="row m-0 mt-3 d-flex justify-content-center mb-15px">
+                            <div class="row d-flex justify-content-center mb-15px">
                                 <div class="col-md-6">
                                     <div class="labelName">
                                         <label class="control-label"><span class="text-danger"></span>Phone:</label>
@@ -173,14 +127,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row m-0 mt-3 d-flex justify-content-center mb-15px">
+                            <div class="row d-flex justify-content-center mb-15px">
                                 <div class="col-md-6">
                                     <span>@Html.CheckBoxFor(model => model.ReturnData[i].Recipient.IsForeignNullable, new { onchange = "EnableOrDisableFieldsForRecipients()", @class = "css-checkbox form-check-input", id = "RecipientIsForeign" }) Is Foreign?</span>
                                 </div>
                                 <div class="col-md-6">
                                 </div>
                             </div>
-                            <div class="row m-0 mt-3 d-flex justify-content-center mb-15px">
+                            <div class="row d-flex justify-content-center mb-15px">
                                 <div class="col-md-6">
                                     <div class="labelName">
                                         <label class="control-label"><span class="text-danger">*</span>Address1:</label>
@@ -196,7 +150,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row m-0 mt-3 d-flex justify-content-center mb-15px">
+                            <div class="row d-flex justify-content-center mb-15px">
                                 <div class="col-md-6">
                                     <div class="labelName">
                                         <label class="control-label"><span class="text-danger">*</span>City:</label>
@@ -214,7 +168,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row m-0 mt-3 d-flex justify-content-center mb-15px">
+                            <div class="row d-flex justify-content-center mb-15px">
                                 <div class="col-md-6">
                                     <div class="labelName">
                                         <label class="control-label" id="zip_code_lbl_recipient"><span class="text-danger">*</span>ZipCd:</label>
@@ -231,7 +185,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row m-0 mt-3 d-flex  mb-15px">
+                            <div class="row d-flex  mb-15px">
                             </div>
                         </div>
                         <h2 class="sub-head text-left mt-4 mb-3 ">Form 1099-NEC Details</h2>
@@ -577,14 +531,7 @@
                                 </button>
                             </div>
                             <div>
-                                <button type="button" class="btn btn_primary shadow btn_md float-right"
-                                onclick="UpdateNEC('@Model?.ReturnHeader.Business.BusinessId',
-            '@(Model?.ReturnHeader.Business.BusinessNm ?? 
-                (Model?.ReturnHeader.Business.FirstNm + " " + 
-                (Model?.ReturnHeader.Business.MiddleNm != null ? Model?.ReturnHeader.Business.MiddleNm + " " : "") + 
-                Model?.ReturnHeader.Business.LastNm + 
-                (Model?.ReturnHeader.Business.Suffix != null ? " " + Model?.ReturnHeader.Business.Suffix : "")))',
-            '@Model?.ReturnHeader.Business.EINorSSN')" id="btnupdate">
+                                <button type="button" class="btn btn_primary shadow btn_md float-right" onclick="UpdateNEC('@Model?.ReturnHeader.Business.BusinessId','@Model?.ReturnHeader.Business.BusinessNm','@Model?.ReturnHeader.Business.EINorSSN')" id="btnupdate">
                                     Update NEC
                                     <i class="fa fa-spinner fa-spin" aria-hidden="true" id="CreateSpinner" style="display:none"></i>
                                 </button>
@@ -593,7 +540,7 @@
                     }
                     else
                     {
-                       <div class='d-flex align-items-center justify-content-between mt-5 px-5'>
+                        <div class='d-flex align-items-center justify-content-between mt-5 px-5'>
                             <div>
                                 <button type="button" class="btn_cancel  mb-3 float-left" onclick="location.href='@Url.Action("GetBusinessList", "Business")'" id="btnback">
                                     <i class="fa fa-arrow-circle-left"></i>
@@ -605,16 +552,8 @@
                                     ValidateForm
                                     <i class="fa fa-spinner fa-spin" aria-hidden="true" id="CreateSpinner" style="display:none"></i>
                                 </button>
-                               <button type="button" class="btn btn_primary shadow btn_md float-right" 
-        onclick="CreateNEC(
-            '@Model?.ReturnHeader.Business.BusinessId',
-            '@(Model?.ReturnHeader.Business.BusinessNm ?? 
-                (Model?.ReturnHeader.Business.FirstNm + " " + 
-                (Model?.ReturnHeader.Business.MiddleNm != null ? Model?.ReturnHeader.Business.MiddleNm + " " : "") + 
-                Model?.ReturnHeader.Business.LastNm + 
-                (Model?.ReturnHeader.Business.Suffix != null ? " " + Model?.ReturnHeader.Business.Suffix : "")))',
-            '@Model?.ReturnHeader.Business.EINorSSN')" 
-        id="btnCreate">   Create NEC
+                                <button type="button" class="btn btn_primary shadow btn_md float-right" onclick="CreateNEC('@Model?.ReturnHeader.Business.BusinessId','@Model?.ReturnHeader.Business.BusinessNm','@Model?.ReturnHeader.Business.EINorSSN')" id="btnCreate">
+                                    Create NEC
                                     <i class="fa fa-spinner fa-spin" aria-hidden="true" id="CreateSpinner" style="display:none"></i>
                                 </button>
                             </div>
@@ -653,7 +592,6 @@
                 recipientcountry.disabled = document.getElementById("RecipientIsForeign").checked ? false : true;
                 ChangeFieldNameForRecipient();
             }
-               ChangeEIN();
         }
         //DropDownValue Values for Update 
         var dropdownvalue1 = document.getElementById("staterecon0").value;
@@ -988,23 +926,5 @@
             }
         });
     }
-          function ChangeEIN() {
-                 debugger
-                var ssnFieldDetails = document.getElementById("ssnFieldDetails");
-                var einFieldDetails = document.getElementById("einFieldDetails");
 
-                if (document.getElementById("Isssn").checked == true){
-                    einFieldDetails.style.display = "none";
-                    ssnFieldDetails.style.display = "block";
-                    $('#BusinessNm').val('');
-                }
-                else  {
-                    einFieldDetails.style.display = "block";
-                    ssnFieldDetails.style.display = "none";
-                    $('#FirstNm').val('');
-                    $('#MiddleNm').val('');
-                    $('#Suffix').val('');
-                    $('#LastNm').val('');
-                }
-            }
 </script>

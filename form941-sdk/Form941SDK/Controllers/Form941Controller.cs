@@ -17,13 +17,13 @@ namespace Form941SDK.Controllers
     public class Form941Controller : Controller
     {
         #region CreateForm 941 View
-        public ActionResult CreateForm941View(Guid businessId, string businessName,string firstName,string lastName, string middleName,string suffix, string tin)
+        public ActionResult CreateForm941View(Guid businessId, string businessName, string tin)
         {
-            if (businessId != Guid.Empty && ((!string.IsNullOrWhiteSpace(businessName)) || ((!string.IsNullOrWhiteSpace(firstName)) || (!string.IsNullOrWhiteSpace(lastName)) || (!string.IsNullOrWhiteSpace(middleName)) || (!string.IsNullOrWhiteSpace(suffix)))) && !string.IsNullOrWhiteSpace(tin))
+            if (businessId != Guid.Empty && !string.IsNullOrWhiteSpace(businessName) && !string.IsNullOrWhiteSpace(tin))
             {
                 Form941CreateRequest createRequest = new Form941CreateRequest
                 {
-                    Form941Records = new List<Form941Details> { new Form941Details { ReturnHeader = new Form941ReturnHeader { Business = new Business { BusinessId = businessId, BusinessNm = businessName, EINorSSN = tin, FirstNm = firstName, LastNm = lastName, MiddleNm = middleName, Suffix = suffix } } } }
+                    Form941Records = new List<Form941Details> { new Form941Details { ReturnHeader = new Form941ReturnHeader { Business = new Business { BusinessId = businessId, BusinessNm = businessName, EINorSSN = tin } } } }
                 };
                 return View(createRequest);
             }
@@ -48,7 +48,7 @@ namespace Form941SDK.Controllers
             {
                 using (var apiClient = new HttpClient())
                 {
-                    //API URL for 941 Create
+                    //API URL for K Create
                     string requestUri = Constants.CREATE_FORM941_URL;
                     apiClient.BaseAddress = new Uri(ApiUrl);
                     //Construct HTTP headers in Generated Token.
@@ -89,7 +89,7 @@ namespace Form941SDK.Controllers
 
         #region Form 941 List
         [HttpGet]
-        public ActionResult Get941List(Guid businessId, string businessName,string firstName, string lastName, string middleName, string suffix, string tin)
+        public ActionResult Get941List(Guid businessId, string businessName, string tin)
         {
             var form941ListReturnResponse = new Form941RecordsResponse();
             var form941GetReturnResponseJSON = string.Empty;
@@ -132,10 +132,6 @@ namespace Form941SDK.Controllers
                         form941ListReturnResponse.Form941Records = new List<Form941ListResponse>();
                         businessDetails.BusinessId = businessId;
                         businessDetails.BusinessNm = businessName;
-                        businessDetails.FirstNm = firstName;
-                        businessDetails.LastNm = lastName;
-                        businessDetails.MiddleNm = middleName;
-                        businessDetails.Suffix = suffix;
                         businessDetails.EIN = tin;
                         form941ListReturnResponse.Form941Records.Add(businessDetails);
                     }
@@ -235,7 +231,7 @@ namespace Form941SDK.Controllers
             {
                 using (var apiClient = new HttpClient())
                 {
-                    //API URL for 941 Update
+                    //API URL for K Create
                     string requestUri = Constants.UPDATE_FORM941_URL;
                     apiClient.BaseAddress = new Uri(ApiUrl);
                     //Construct HTTP headers in Generated Token.
